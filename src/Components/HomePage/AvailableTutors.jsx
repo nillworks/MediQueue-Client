@@ -18,7 +18,7 @@ const AvailableTutors = async () => {
       </div>
 
       {/* Cards */}
-      <div className=" max-w-7xl mx-auto grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="mx-auto grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 px-3">
         {tutorsData.map(tutor => (
           <TutorsCard key={tutor?._id} tutor={tutor} />
         ))}

@@ -18,7 +18,7 @@ const TutorsCard = ({ tutor }) => {
   } = tutor || {};
 
   return (
-    <div className="bg-white rounded-2xl transition duration-300 cursor-pointer hover:-translate-y-1 border border-[#dddd] hover:shadow-md overflow-hidden w-full max-w-[320px]">
+    <div className="bg-white rounded-2xl transition duration-300 cursor-pointer hover:-translate-y-1 border border-[#dddd] hover:shadow-md overflow-hidden w-full">
       {/* Image Section */}
       <div className="relative h-[180px]">
         <Image src={image} alt={name} fill className="object-cover" />
