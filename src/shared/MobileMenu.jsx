@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import ActiveLink from './ActiveLink';
 import Image from 'next/image';
+import { signOut } from '@/lib/auth-client';
 
 const MobileMenu = ({ navLinks, user }) => {
   const [open, setOpen] = useState(false);
@@ -14,39 +15,58 @@ const MobileMenu = ({ navLinks, user }) => {
       {/* menu button */}
       <button
         onClick={() => setOpen(true)}
-        className="flex h-8 w-8 items-center justify-center rounded-xl border border-gray-200 lg:hidden cursor-pointer"
+        className="flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 lg:hidden"
       >
-        <Menu size={18} className="cursor-pointer" />
+        <Menu className="cursor-pointer" size={18} />
       </button>
 
       {/* overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 z-40 bg-black/40 transition-all duration-300 ${
+        className={`fixed inset-0 z-[9998] bg-black/40 backdrop-blur-sm transition-all duration-300 ${
           open ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
-      ></div>
+      />
 
-      {/* sidebar */}
+      {/* TOP CENTER MENU */}
       <div
-        className={`fixed top-0 right-0 z-50 h-screen w-[280px] bg-white p-5 transition-all duration-300 ${
-          open ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-5 left-1/2 z-[9999] w-[90%] max-w-sm -translate-x-1/2 transform rounded-2xl bg-white shadow-2xl border border-gray-200 p-5 transition-all duration-300 ${
+          open
+            ? 'translate-y-0 opacity-100 scale-100'
+            : '-translate-y-10 opacity-0 scale-95 pointer-events-none'
         }`}
       >
-        {/* top */}
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-slate-900">Menu</h2>
+        {/* header */}
+        <div className="mb-5 flex items-center justify-between">
+          <h2 className="text-lg font-bold text-slate-900">Menu</h2>
 
           <button
             onClick={() => setOpen(false)}
             className="rounded-lg p-2 hover:bg-slate-100"
           >
-            <X size={20} />
+            <X className="cursor-pointer" size={20} />
           </button>
         </div>
 
+        {/* user */}
+        {user && (
+          <div className="mb-5 flex items-center gap-3 rounded-xl bg-blue-100 p-3">
+            <Image
+              width={40}
+              height={40}
+              src={user?.image || '/avatar.png'}
+              alt={user?.name}
+              className="h-10 w-10 rounded-full object-cover"
+            />
+            <div>
+              <h4 className="font-semibold text-slate-800">{user?.name}</h4>
+              <p className="text-sm text-slate-500">Logged In</p>
+            </div>
+          </div>
+        )}
+
         {/* nav links */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-row items-center flex-wrap justify-center gap-8">
           {navLinks.map(link => (
             <div key={link.href} onClick={() => setOpen(false)}>
               <ActiveLink href={link.href}>{link.name}</ActiveLink>
@@ -54,31 +74,25 @@ const MobileMenu = ({ navLinks, user }) => {
           ))}
         </div>
 
-        {/* auth section */}
-        <div className="mt-8 border-t pt-6">
+        {/* auth */}
+        <div className="mt-5 border-t pt-4">
           {user ? (
-            <div className="flex items-center gap-3 rounded-2xl bg-blue-100 p-3">
-              <Image
-                width={10}
-                height={10}
-                src={user.image}
-                alt={user.name}
-                className="h-12 w-12 rounded-full object-cover"
-              />
-
-              <div>
-                <h4 className="font-semibold text-slate-800">{user.name}</h4>
-
-                <p className="text-sm text-slate-500">Logged In</p>
-              </div>
-            </div>
+            <button
+              onClick={() => {
+                signOut();
+                setOpen(false);
+              }}
+              className="w-full cursor-pointer rounded-xl bg-red-100 py-2 text-red-500 font-medium hover:bg-red-200"
+            >
+              Logout
+            </button>
           ) : (
             <div
               onClick={() => setOpen(false)}
-              className="block rounded-2xl bg-blue-600 px-5 py-3 text-center font-semibold text-white"
+              className="rounded-xl bg-blue-600 py-2 text-center font-semibold text-white"
             >
-              <Link href={'/signin'}>Login</Link> /{' '}
-              <Link href={'/signup'}>Register</Link>
+              <Link href="/signin">Login</Link> /{' '}
+              <Link href="/signup">Register</Link>
             </div>
           )}
         </div>

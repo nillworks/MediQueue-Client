@@ -4,48 +4,80 @@ import Link from 'next/link';
 
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Input } from '@heroui/react';
+import { Input, toast } from '@heroui/react';
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 const SignUpPage = () => {
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleRegister = e => {
+  const handleRegister = async e => {
     e.preventDefault();
 
     const form = new FormData(e.target);
-    const data = Object.fromEntries(form.entries());
+    const signUpData = Object.fromEntries(form.entries());
 
     const newErrors = {};
 
-    if (!data.name) newErrors.name = 'Name is required';
-    if (!data.email) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(data.email))
+    if (!signUpData.name) newErrors.name = 'Name is required';
+    if (!signUpData.email) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(signUpData.email))
       newErrors.email = 'Invalid email';
 
-    if (!data.photo) newErrors.photo = 'Photo URL required';
+    if (!signUpData.photo) newErrors.photo = 'Photo URL required';
 
-    if (!data.password) newErrors.password = 'Password required';
-    else if (data.password.length <= 8) newErrors.password = 'Min 8 characters';
-    else if (!/[A-Z]/.test(data.password))
+    if (!signUpData.password) newErrors.password = 'Password required';
+    else if (signUpData.password.length <= 8)
+      newErrors.password = 'Min 8 characters';
+    else if (!/[A-Z]/.test(signUpData.password))
       newErrors.password = 'Need uppercase letter';
-    else if (!/[a-z]/.test(data.password))
+    else if (!/[a-z]/.test(signUpData.password))
       newErrors.password = 'Need lowercase letter';
 
-    if (!data.confirmPassword) newErrors.confirmPassword = 'Confirm password';
-    else if (data.password !== data.confirmPassword)
+    if (!signUpData.confirmPassword)
+      newErrors.confirmPassword = 'Confirm password';
+    else if (signUpData.password !== signUpData.confirmPassword)
       newErrors.confirmPassword = 'Password not match';
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-
     setErrors({});
+    setLoading(true);
 
-    console.log(data);
+    // signup functionality implement
+    const { data, error } = await authClient.signUp.email({
+      name: signUpData?.name, // required
+      email: signUpData?.email, // required
+      password: signUpData?.password, // required
+      image: signUpData?.photo,
+      callbackURL: '/',
+    });
+
+    setTimeout(() => {
+      setLoading(false);
+      if (data) {
+        toast.success('Account created successfully', {
+          description:
+            'Your account has been created. You can now Register in.',
+          variant: 'success',
+        });
+        router.push('/signin');
+      }
+
+      if (error) {
+        toast.danger('Register failed', {
+          description: error.message || 'Please try again later.',
+          variant: 'danger',
+        });
+        return;
+      }
+    }, 100);
 
     e.target.reset();
   };

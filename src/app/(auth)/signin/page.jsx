@@ -4,12 +4,14 @@ import Link from 'next/link';
 
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import { authClient } from '@/lib/auth-client';
+import { toast } from '@heroui/react';
 
 const SignInPage = () => {
   const [showPass, setShowPass] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [remember, setRemember] = useState(false); // ✅ NEW
+  const [remember, setRemember] = useState(false);
 
   const validate = data => {
     const newErrors = {};
@@ -32,7 +34,7 @@ const SignInPage = () => {
       }
     }
 
-    // ✅ Remember me validation
+    //  Remember me validation
     if (!remember) {
       newErrors.remember = 'You must accept Remember Me';
     }
@@ -40,26 +42,46 @@ const SignInPage = () => {
     return newErrors;
   };
 
-  const handleLogin = e => {
+  const handleLogin = async e => {
     e.preventDefault();
 
     const form = new FormData(e.target);
-    const data = Object.fromEntries(form.entries());
+    const SignInData = Object.fromEntries(form.entries());
 
-    const validationErrors = validate(data);
+    const validationErrors = validate(SignInData);
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-
     setErrors({});
     setLoading(true);
 
+    // SignIn Auth Page
+    const { data, error } = await authClient.signIn.email({
+      email: SignInData.email, // required
+      password: SignInData.password, // required
+      rememberMe: true,
+      callbackURL: '/',
+    });
+
     setTimeout(() => {
       setLoading(false);
-      console.log('Login success');
-    }, 1000);
+      if (data) {
+        toast.success('Welcome Back MediQueue', {
+          description: 'You have successfully Login in to your account.',
+          variant: 'success',
+        });
+      }
+
+      if (error) {
+        toast.danger('Login failed', {
+          description: error.message || 'Invalid email or password.',
+          variant: 'danger',
+        });
+        return;
+      }
+    }, 100);
   };
 
   return (
