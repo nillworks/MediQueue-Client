@@ -5,7 +5,6 @@ import React from 'react';
 const AvailableTutors = async () => {
   const data = await getTopTutorsData();
   const tutorsData = data?.tutors;
-  console.log(tutorsData);
 
   return (
     <div className="py-10 container mx-auto">

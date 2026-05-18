@@ -1,9 +1,13 @@
 import TutorDetailsPage from '@/Components/TutorsDetails/TutorsDetails';
+import getSingleTutorsData from '@/lib/getSingleTutorsData';
 
-const TutorsDetailsPage = () => {
+const TutorsDetailsPage = async ({ params }) => {
+  const { id } = await params;
+  const ex = await getSingleTutorsData(id);
+
   return (
     <>
-      <TutorDetailsPage />
+      <TutorDetailsPage singleData={ex} />
     </>
   );
 };

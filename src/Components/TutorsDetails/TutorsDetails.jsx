@@ -10,10 +10,36 @@ import {
   FaChevronLeft,
 } from 'react-icons/fa';
 import Image from 'next/image';
+import BookingSession from './BookingSession';
 
-const TutorsDetails = () => {
+const TutorsDetails = ({ singleData }) => {
+  if (!singleData) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
+  }
+
+  const {
+    name,
+    subject,
+    university,
+    rating,
+    reviews,
+    schedule,
+    days,
+    location,
+    experience,
+    price,
+    slots,
+    mode,
+    bio,
+    image,
+  } = singleData;
+
   return (
-    <div className=" bg-[#f8fafc] pt-34 pb-12 px-4">
+    <div className="bg-[#f8fafc] pt-34 pb-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Back */}
         <Link
@@ -28,13 +54,13 @@ const TutorsDetails = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-3xl shadow-md overflow-hidden">
               {/* Image */}
-              <div className="h-72">
+
+              <div className="relative w-full h-[450px] overflow-hidden rounded-t-3xl group">
                 <Image
-                  width={400}
-                  height={600}
-                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956"
-                  className="w-full h-full object-cover"
-                  alt=""
+                  src={image}
+                  alt={name}
+                  fill
+                  className="object-cover  object-center group-hover:scale-110 transition duration-500"
                 />
               </div>
 
@@ -42,24 +68,26 @@ const TutorsDetails = () => {
                 {/* Tags */}
                 <div className="flex flex-wrap gap-3 mb-4">
                   <span className="px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">
-                    Mathematics
+                    {subject}
                   </span>
 
                   <span className="px-4 py-1 bg-green-100 text-green-600 rounded-full text-sm">
-                    Online
+                    {mode}
                   </span>
 
                   <span className="flex items-center gap-1 px-4 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-semibold">
-                    <FaStar className="text-yellow-500" /> 4.9 (128 reviews)
+                    <FaStar className="text-yellow-500" />
+                    {rating} ({reviews} reviews)
                   </span>
                 </div>
 
                 {/* Name */}
-                <h1 className="text-3xl font-bold text-gray-900">
-                  Dr. Sarah Chen
-                </h1>
+                <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
 
-                <p className="text-blue-600 mb-6">Columbia University</p>
+                <p className="text-blue-600 mb-2">{university}</p>
+
+                {/* Bio */}
+                <p className="text-gray-600 mb-6">{bio}</p>
 
                 {/* Info */}
                 <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -67,7 +95,7 @@ const TutorsDetails = () => {
                     <FaClock className="text-blue-600" />
                     <div>
                       <p className="text-xs text-gray-500">Availability</p>
-                      <p className="text-sm font-semibold">Mon-Fri, 9AM-5PM</p>
+                      <p className="text-sm font-semibold">{schedule}</p>
                     </div>
                   </div>
 
@@ -75,7 +103,7 @@ const TutorsDetails = () => {
                     <FaMapMarkerAlt className="text-cyan-600" />
                     <div>
                       <p className="text-xs text-gray-500">Location</p>
-                      <p className="text-sm font-semibold">New York</p>
+                      <p className="text-sm font-semibold">{location}</p>
                     </div>
                   </div>
 
@@ -83,7 +111,9 @@ const TutorsDetails = () => {
                     <FaUser className="text-purple-600" />
                     <div>
                       <p className="text-xs text-gray-500">Experience</p>
-                      <p className="text-sm font-semibold">8 years</p>
+                      <p className="text-sm font-semibold">
+                        {experience} years
+                      </p>
                     </div>
                   </div>
 
@@ -91,7 +121,7 @@ const TutorsDetails = () => {
                     <FaDollarSign className="text-green-600" />
                     <div>
                       <p className="text-xs text-gray-500">Hourly Rate</p>
-                      <p className="text-sm font-semibold">$45/hour</p>
+                      <p className="text-sm font-semibold">${price}/hour</p>
                     </div>
                   </div>
                 </div>
@@ -100,7 +130,7 @@ const TutorsDetails = () => {
                 <h3 className="font-semibold text-lg mb-3">Available Days</h3>
 
                 <div className="flex flex-wrap gap-2">
-                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map(day => (
+                  {days?.map(day => (
                     <span
                       key={day}
                       className="px-4 py-2 bg-blue-100 text-blue-600 rounded-xl text-sm"
@@ -122,27 +152,29 @@ const TutorsDetails = () => {
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Session Fee</span>
-                    <span className="font-semibold">$45/hr</span>
+                    <span className="font-semibold">${price}/hr</span>
                   </div>
 
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Available Slots</span>
-                    <span className="font-semibold">12 remaining</span>
+                    <span className="font-semibold">{slots} remaining</span>
                   </div>
 
                   <div className="border-t pt-4">
                     <div className="flex justify-between">
                       <span className="font-semibold">Total (1 hr)</span>
                       <span className="text-blue-600 font-bold text-lg">
-                        $45
+                        ${price}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <button className="w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
+                <BookingSession />
+
+                {/* <button className="w-full cursor-pointer py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
                   Login to Book
-                </button>
+                </button> */}
 
                 <p className="text-xs text-center text-gray-400 mt-3">
                   Free cancellation up to 24 hours before session
