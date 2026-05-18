@@ -1,7 +1,11 @@
-import React from 'react';
+import TutorsAll from '@/Components/TutorsPage/TutorsAll';
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <TutorsAll />
+    </>
+  );
 };
 
 export default page;
