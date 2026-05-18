@@ -5,6 +5,7 @@ import React from 'react';
 
 const TutorsCard = ({ tutor }) => {
   const {
+    _id,
     name,
     subject,
     university,
@@ -59,7 +60,7 @@ const TutorsCard = ({ tutor }) => {
             <span className="text-sm text-gray-500">/hr</span>
           </p>
 
-          <Link href={``}>
+          <Link href={`/tutors/${_id}`}>
             <button className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-4 py-2 text-sm rounded-lg transition">
               Book Now
             </button>
