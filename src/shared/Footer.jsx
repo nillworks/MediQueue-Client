@@ -15,7 +15,7 @@ const Footer = () => {
     <footer className="bg-[#07142F] text-white pt-20 pb-10 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Top Footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid items-center justify-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Logo & About */}
           <div>
             <div className="flex items-center gap-3 mb-6">
