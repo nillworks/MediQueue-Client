@@ -1,7 +1,11 @@
-import React from 'react';
+import MyTutorsPage from '@/Components/MyTutor/MyTutorsPage';
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <MyTutorsPage />
+    </>
+  );
 };
 
 export default page;

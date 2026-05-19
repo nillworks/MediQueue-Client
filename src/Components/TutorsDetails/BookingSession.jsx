@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 const BookingSession = ({ singleData }) => {
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState(false);
   const { data } = useSession();
   const user = data?.user;
 
@@ -40,9 +40,10 @@ const BookingSession = ({ singleData }) => {
     });
 
     const res = await req.json();
-    setLoading(false);
+
     if (res.acknowledged === true) {
       setLoading(false);
+      document.querySelector('[data-slot="modal-close-trigger"]')?.click();
       toast.success('Booking Confirmed Successfully', {
         description:
           'Your tutoring session has been successfully booked. We will contact you soon.',
@@ -57,25 +58,24 @@ const BookingSession = ({ singleData }) => {
     }
   };
 
+  console.log(open);
+
   return (
-    <Modal>
-      {/* OPEN BUTTON */}
-      <Modal open={open} onOpenChange={setOpen}>
-        <Button
-          onClick={() => setOpen(true)}
-          className="w-full hover:to-blue-600 rounded-lg transition duration-300"
-        >
-          {user ? 'Book Now' : 'Login to Book'}
-        </Button>
-      </Modal>
+    <Modal open={open} onOpenChange={setOpen}>
+      <Button
+        onClick={() => setOpen(true)}
+        className="bg-blue-600 w-full rounded-lg text-white font-medium py-5"
+      >
+        {user ? 'Book Now' : 'Login to Book'}
+      </Button>
 
       <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-md rounded-3xl overflow-hidden shadow-2xl bg-white dark:bg-zinc-900">
-            <Modal.CloseTrigger />
+            <Modal.CloseTrigger className="text-blue-400" />
 
             {/* HEADER */}
-            <Modal.Header className="border-b border-gray-100 dark:border-white/10 p-6">
+            <Modal.Header className="border-b border-gray-100  p-6">
               <Modal.Heading className="text-2xl font-bold text-gray-900 dark:text-white mt-3">
                 Book Session
               </Modal.Heading>
@@ -129,6 +129,7 @@ const BookingSession = ({ singleData }) => {
                     />
                   </TextField>
 
+                  {/* studentName */}
                   <TextField
                     defaultValue={user?.name}
                     className="w-full"
@@ -142,6 +143,7 @@ const BookingSession = ({ singleData }) => {
                     />
                   </TextField>
 
+                  {/* email */}
                   <TextField
                     defaultValue={user?.email}
                     className="w-full"
@@ -155,6 +157,7 @@ const BookingSession = ({ singleData }) => {
                     />
                   </TextField>
 
+                  {/* Phone */}
                   <TextField className="w-full" name="phone" type="tel">
                     <Label>Phone</Label>
                     <Input
@@ -164,6 +167,7 @@ const BookingSession = ({ singleData }) => {
                     />
                   </TextField>
 
+                  {/* Preferred Date */}
                   <TextField className="w-full" name="PreferredDate">
                     <Label>Preferred Date</Label>
                     <Input

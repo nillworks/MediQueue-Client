@@ -36,7 +36,7 @@ const NavigationMenu = () => {
     { name: 'Home', href: '/' },
     { name: 'Tutors', href: '/tutors' },
     { name: 'Add Tutor', href: '/add-tutor' },
-    { name: 'My Tutors', href: '/my-tutors' },
+    { name: 'My Tutors List ', href: '/my-tutors' },
     { name: 'My Booked Session', href: '/my-booked-session' },
   ];
 
