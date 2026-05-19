@@ -1,24 +1,32 @@
 'use client';
 
+import { useSession } from '@/lib/auth-client';
 import { Button, Input, Label, Modal, Surface, TextField } from '@heroui/react';
 import Image from 'next/image';
 
-const BookingSession = () => {
-  const tutor = null;
+const BookingSession = ({ singleData }) => {
+  const { data } = useSession();
+  const user = data?.user;
 
   const submitBooing = event => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    const bookingData = {
+      ...data,
+      user,
+      slots: singleData.slots,
+    };
+
+    console.log(bookingData);
   };
 
   return (
     <Modal>
       {/* OPEN BUTTON */}
       <Button className="w-full cursor-pointer py-6 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 shadow-md hover:shadow-xl hover:to-blue-600 transition-all">
-        Login to Book
+        {user ? 'Book Now' : 'Login to Book'}
       </Button>
 
       <Modal.Backdrop>
@@ -41,17 +49,20 @@ const BookingSession = () => {
                 <Image
                   width={200}
                   height={200}
-                  src={tutor?.image || '/avatar.png'}
+                  src={user?.image || '/avatar.png'}
                   className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
                   alt="tutor"
                 />
 
                 <div>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {tutor?.name || 'Tutor Name'}
+                    {user?.name || 'Tutor Name'}
                   </p>
                   <p className="text-sm text-blue-600 dark:text-blue-400">
-                    {tutor?.subject || 'Subject'} • ${tutor?.fee || 0}/hr
+                    {singleData?.subject || 'Subject'} •{' '}
+                    <span className="font-semibold">$</span>
+                    {singleData?.price || 0}
+                    /hr
                   </p>
                 </div>
               </div>
@@ -61,7 +72,26 @@ const BookingSession = () => {
             <Modal.Body className="p-6">
               <Surface variant="default">
                 <form onSubmit={submitBooing} className="flex flex-col gap-4">
-                  <TextField className="w-full" name="name" type="text">
+                  {/* Tutor Name */}
+                  <TextField
+                    defaultValue={singleData?.name}
+                    className="w-full"
+                    name="name"
+                    type="text"
+                  >
+                    <Label>Tutor Name</Label>
+                    <Input
+                      placeholder="Enter your full  name"
+                      className="rounded-xl"
+                    />
+                  </TextField>
+
+                  <TextField
+                    defaultValue={user?.name}
+                    className="w-full"
+                    name="name"
+                    type="text"
+                  >
                     <Label>Student Name</Label>
                     <Input
                       placeholder="Enter your full  name"
@@ -69,7 +99,12 @@ const BookingSession = () => {
                     />
                   </TextField>
 
-                  <TextField className="w-full" name="email" type="email">
+                  <TextField
+                    defaultValue={user?.email}
+                    className="w-full"
+                    name="email"
+                    type="email"
+                  >
                     <Label>Email</Label>
                     <Input
                       placeholder="Enter your email"
@@ -80,6 +115,7 @@ const BookingSession = () => {
                   <TextField className="w-full" name="phone" type="tel">
                     <Label>Phone</Label>
                     <Input
+                      required
                       placeholder="Enter your phone number"
                       className="rounded-xl"
                     />
@@ -99,7 +135,7 @@ const BookingSession = () => {
                     type="submit"
                     className="flex-1 rounded-xl py-3 w-full bg-blue-600 text-white hover:bg-blue-700"
                   >
-                    Confirm Booking
+                    {user ? '' : ''} Confirm Booking
                   </Button>
                 </form>
               </Surface>

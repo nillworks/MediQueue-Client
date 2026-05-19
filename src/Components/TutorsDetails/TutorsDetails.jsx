@@ -36,7 +36,37 @@ const TutorsDetails = ({ singleData }) => {
     mode,
     bio,
     image,
+    sessionStartDate,
   } = singleData;
+
+  const fromMinutes = min => {
+    if (min === undefined || min === null) return '';
+    const h = Math.floor(min / 60);
+    const m = min % 60;
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const hour12 = h % 12 || 12;
+    return `${hour12}:${m.toString().padStart(2, '0')} ${ampm}`;
+  };
+
+  const formatDays = days => {
+    if (!days) return '';
+    if (typeof days === 'string') return days;
+    if (Array.isArray(days)) {
+      if (days.length === 0) return '';
+      if (days.length === 1) return days[0];
+      return `${days[0]} – ${days[days.length - 1]}`;
+    }
+    return '';
+  };
+
+  const formatDate = date => {
+    if (!date) return '';
+    return new Date(date).toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+  };
 
   return (
     <div className="bg-[#f8fafc] pt-34 pb-12 px-4">
@@ -54,13 +84,16 @@ const TutorsDetails = ({ singleData }) => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-3xl shadow-md overflow-hidden">
               {/* Image */}
-
               <div className="relative w-full h-[450px] overflow-hidden rounded-t-3xl group">
                 <Image
-                  src={image}
+                  src={
+                    image && image.startsWith('http')
+                      ? image
+                      : 'https://cdn-icons-png.flaticon.com/512/13434/13434972.png'
+                  }
                   alt={name}
                   fill
-                  className="object-cover  object-center group-hover:scale-110 transition duration-500"
+                  className="object-cover group-hover:scale-110 transition duration-500"
                 />
               </div>
 
@@ -82,53 +115,107 @@ const TutorsDetails = ({ singleData }) => {
                 </div>
 
                 {/* Name */}
-                <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
+                <div className="space-y-2 flex flex-col gap-1">
+                  <div>
+                    <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
+                  </div>
 
-                <p className="text-blue-600 mb-2">{university}</p>
+                  <div className="flex items-center gap-2">
+                    <p className=" text-gray-500">University : </p>
+                    <p className="text-blue-600">{university}</p>
+                  </div>
+                </div>
 
                 {/* Bio */}
                 <p className="text-gray-600 mb-6">{bio}</p>
 
-                {/* Info */}
+                {/* INFO GRID (KEY : VALUE STYLE) */}
                 <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                  <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-                    <FaClock className="text-blue-600" />
+                  {/* Availability */}
+                  <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
+                    <FaClock className="text-blue-600 mt-1" />
                     <div>
                       <p className="text-xs text-gray-500">Availability</p>
-                      <p className="text-sm font-semibold">{schedule}</p>
+                      <p className="text-sm font-semibold text-gray-700">
+                        {formatDays(days)}
+                        {schedule?.startTime && schedule?.endTime && (
+                          <>
+                            , {fromMinutes(schedule.startTime)} –{' '}
+                            {fromMinutes(schedule.endTime)}
+                          </>
+                        )}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-                    <FaMapMarkerAlt className="text-cyan-600" />
+                  {/* Location */}
+                  <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
+                    <FaMapMarkerAlt className="text-cyan-600 mt-1" />
                     <div>
                       <p className="text-xs text-gray-500">Location</p>
-                      <p className="text-sm font-semibold">{location}</p>
+                      <p className="text-sm font-semibold text-gray-700">
+                        {location}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-                    <FaUser className="text-purple-600" />
+                  {/* Experience */}
+                  <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
+                    <FaUser className="text-purple-600 mt-1" />
                     <div>
                       <p className="text-xs text-gray-500">Experience</p>
-                      <p className="text-sm font-semibold">
+                      <p className="text-sm font-semibold text-gray-700">
                         {experience} years
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-                    <FaDollarSign className="text-green-600" />
+                  {/* Price */}
+                  <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
+                    <FaDollarSign className="text-green-600 mt-1" />
                     <div>
                       <p className="text-xs text-gray-500">Hourly Rate</p>
-                      <p className="text-sm font-semibold">${price}/hour</p>
+                      <p className="text-sm font-semibold text-gray-700">
+                        ${price}/hour
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Start date session */}
+                  <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
+                    <FaClock className="text-blue-600 mt-1" />
+
+                    <div>
+                      <p className="text-xs text-gray-500">
+                        Session Start Date
+                      </p>
+
+                      <p className="text-sm font-semibold text-gray-700">
+                        {singleData?.sessionStartDate
+                          ? formatDate(singleData.sessionStartDate)
+                          : 'Not set'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* End date session */}
+                  <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
+                    <FaClock className="text-blue-600 mt-1" />
+
+                    <div>
+                      <p className="text-xs text-gray-500">Session End Date</p>
+
+                      <p className="text-sm font-semibold text-gray-700">
+                        {singleData?.sessionEndDate
+                          ? formatDate(singleData.sessionEndDate)
+                          : 'Not set'}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Days */}
                 <h3 className="font-semibold text-lg mb-3">Available Days</h3>
-
                 <div className="flex flex-wrap gap-2">
                   {days?.map(day => (
                     <span
@@ -147,7 +234,7 @@ const TutorsDetails = ({ singleData }) => {
           <div>
             <div className="sticky top-28">
               <div className="bg-white rounded-3xl shadow-md p-6">
-                <h3 className="text-xl font-bold mb-6">Book Session</h3>
+                <h3 className="text-xl font-bold mb-6">Booking Summary</h3>
 
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between text-sm">
@@ -157,24 +244,18 @@ const TutorsDetails = ({ singleData }) => {
 
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Available Slots</span>
-                    <span className="font-semibold">{slots} remaining</span>
+                    <span className="font-semibold">{slots}</span>
                   </div>
 
-                  <div className="border-t pt-4">
-                    <div className="flex justify-between">
-                      <span className="font-semibold">Total (1 hr)</span>
-                      <span className="text-blue-600 font-bold text-lg">
-                        ${price}
-                      </span>
-                    </div>
+                  <div className="border-t pt-4 flex justify-between">
+                    <span className="font-semibold">Total (1 hr)</span>
+                    <span className="text-blue-600 font-bold text-lg">
+                      ${price}
+                    </span>
                   </div>
                 </div>
 
-                <BookingSession />
-
-                {/* <button className="w-full cursor-pointer py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
-                  Login to Book
-                </button> */}
+                <BookingSession singleData={singleData} />
 
                 <p className="text-xs text-center text-gray-400 mt-3">
                   Free cancellation up to 24 hours before session

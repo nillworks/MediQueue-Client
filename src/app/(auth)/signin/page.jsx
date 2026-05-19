@@ -84,6 +84,12 @@ const SignInPage = () => {
     }, 100);
   };
 
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: 'google',
+    });
+  };
+
   return (
     <div className="flex pt-30 pb-10 items-center justify-center px-4 bg-gray-50 dark:bg-black">
       <div className="w-full max-w-5xl grid lg:grid-cols-2 bg-white dark:bg-[#0B0F19] rounded-3xl shadow-xl overflow-hidden">
@@ -166,7 +172,7 @@ const SignInPage = () => {
                 )}
               </div>
 
-              {/* ✅ REMEMBER */}
+              {/*  REMEMBER */}
               <div className="flex justify-between text-sm items-center">
                 <label className="flex gap-2 items-center cursor-pointer">
                   <input
@@ -200,7 +206,10 @@ const SignInPage = () => {
             </form>
 
             {/* GOOGLE */}
-            <button className="w-full mt-4 border py-3 rounded-xl flex items-center cursor-pointer hover:bg-gray-50 transition duration-300 justify-center gap-2">
+            <button
+              onClick={handleGoogleSignIn}
+              className="w-full mt-4 border py-3 rounded-xl flex items-center cursor-pointer hover:bg-gray-50 transition duration-300 justify-center gap-2"
+            >
               <FcGoogle size={20} />
               Continue with Google
             </button>

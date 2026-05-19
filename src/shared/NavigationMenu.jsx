@@ -80,7 +80,7 @@ const NavigationMenu = () => {
             {/* desktop auth */}
             <div className="hidden lg:block">
               {user ? (
-                <div className="relative" ref={dropdownRef}>
+                <div className="relative cursor-pointer" ref={dropdownRef}>
                   {/* profile button */}
                   <button
                     onClick={() => setOpen(!open)}
@@ -125,7 +125,7 @@ const NavigationMenu = () => {
 
                       <button
                         onClick={() => signOut()}
-                        className="w-full text-left px-4 py-2 text-sm hover:bg-red-100 text-red-500"
+                        className="w-full cursor-pointer text-left px-4 py-2 text-sm hover:bg-red-100 text-red-500"
                       >
                         Logout
                       </button>
