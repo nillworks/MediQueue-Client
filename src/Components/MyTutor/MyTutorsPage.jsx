@@ -11,6 +11,7 @@ import {
 import Image from 'next/image';
 import getBookingData from '@/lib/getBookingData';
 import Link from 'next/link';
+import EditTutorModal from './EditTutorModal';
 
 export async function MyTutorsPage() {
   const data = await getBookingData();
@@ -81,13 +82,8 @@ export async function MyTutorsPage() {
                   </Button>
                 </Link>
 
-                <Button
-                  size="icon"
-                  variant="outline"
-                  className="cursor-pointer"
-                >
-                  <Edit size={16} className="text-green-500" />
-                </Button>
+                {/* Edit */}
+                <EditTutorModal tutorsData={tutor} />
 
                 <Button
                   size="icon"
