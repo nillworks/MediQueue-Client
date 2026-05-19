@@ -37,7 +37,7 @@ const NavigationMenu = () => {
     { name: 'Tutors', href: '/tutors' },
     { name: 'Add Tutor', href: '/add-tutor' },
     { name: 'My Tutors', href: '/my-tutors' },
-    { name: 'My Sessions', href: '/my-sessions' },
+    { name: 'My Booked Session', href: '/my-booked-session' },
   ];
 
   const navLinks = user ? privateNavLinks : publicNavLinks;

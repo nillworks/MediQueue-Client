@@ -1,10 +1,21 @@
 'use client';
 
 import { useSession } from '@/lib/auth-client';
-import { Button, Input, Label, Modal, Surface, TextField } from '@heroui/react';
+import {
+  Button,
+  Input,
+  Label,
+  Modal,
+  Surface,
+  TextField,
+  toast,
+} from '@heroui/react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const BookingSession = ({ singleData }) => {
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(null);
   const { data } = useSession();
   const user = data?.user;
 
@@ -17,20 +28,46 @@ const BookingSession = ({ singleData }) => {
       ...data,
       user,
       slots: singleData.slots,
+      tutorId: singleData._id,
     };
+    setLoading(true);
 
     // post Confirm Booing
-    const req = await fetch();
+    const req = await fetch(`http://localhost:8000/myBooking`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(bookingData),
+    });
 
-    console.log(bookingData);
+    const res = await req.json();
+    setLoading(false);
+    if (res.acknowledged === true) {
+      setLoading(false);
+      toast.success('Booking Confirmed Successfully', {
+        description:
+          'Your tutoring session has been successfully booked. We will contact you soon.',
+        variant: 'success',
+      });
+    } else {
+      toast.danger('Booking Failed', {
+        description: 'We could not process your booking. Please try again.',
+        variant: 'danger',
+      });
+      return;
+    }
   };
 
   return (
     <Modal>
       {/* OPEN BUTTON */}
-      <Button className="w-full cursor-pointer py-6 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 shadow-md hover:shadow-xl hover:to-blue-600 transition-all">
-        {user ? 'Book Now' : 'Login to Book'}
-      </Button>
+      <Modal open={open} onOpenChange={setOpen}>
+        <Button
+          onClick={() => setOpen(true)}
+          className="w-full hover:to-blue-600 rounded-lg transition duration-300"
+        >
+          {user ? 'Book Now' : 'Login to Book'}
+        </Button>
+      </Modal>
 
       <Modal.Backdrop>
         <Modal.Container placement="auto">
@@ -95,7 +132,7 @@ const BookingSession = ({ singleData }) => {
                   <TextField
                     defaultValue={user?.name}
                     className="w-full"
-                    name="name"
+                    name="studentName"
                     type="text"
                   >
                     <Label>Student Name</Label>
@@ -141,7 +178,11 @@ const BookingSession = ({ singleData }) => {
                     type="submit"
                     className="flex-1 rounded-xl py-3 w-full bg-blue-600 text-white hover:bg-blue-700"
                   >
-                    {user ? '' : ''} Confirm Booking
+                    {loading ? (
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      'Confirm Booking'
+                    )}{' '}
                   </Button>
                 </form>
               </Surface>
