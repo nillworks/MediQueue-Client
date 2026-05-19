@@ -29,6 +29,8 @@ const BookingSession = ({ singleData }) => {
       user,
       slots: singleData.slots,
       tutorId: singleData._id,
+      status: true,
+      ...singleData,
     };
     setLoading(true);
 
@@ -43,7 +45,9 @@ const BookingSession = ({ singleData }) => {
 
     if (res.acknowledged === true) {
       setLoading(false);
+
       document.querySelector('[data-slot="modal-close-trigger"]')?.click();
+
       toast.success('Booking Confirmed Successfully', {
         description:
           'Your tutoring session has been successfully booked. We will contact you soon.',

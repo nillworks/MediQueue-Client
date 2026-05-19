@@ -1,23 +1,5 @@
-'use client';
-
-import {
-  Delete,
-  Edit,
-  Eye,
-  MoreHorizontalIcon,
-  Trash2,
-  View,
-} from 'lucide-react';
-
+import { Edit, Eye, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-
 import {
   Table,
   TableBody,
@@ -26,37 +8,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-
 import Image from 'next/image';
+import getBookingData from '@/lib/getBookingData';
+import Link from 'next/link';
 
-const tutors = [
-  {
-    name: 'Dr. Sarah Chen',
-    subject: 'Mathematics',
-    fee: 45,
-    slots: 12,
-    status: 'Active',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
-  },
-  {
-    name: 'Prof. James Wilson',
-    subject: 'Physics',
-    fee: 60,
-    slots: 8,
-    status: 'Active',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-  },
-  {
-    name: 'Emily Rodriguez',
-    subject: 'Chemistry',
-    fee: 40,
-    slots: 15,
-    status: 'Active',
-    image: 'https://randomuser.me/api/portraits/women/65.jpg',
-  },
-];
+export async function MyTutorsPage() {
+  const data = await getBookingData();
+  const tutors = data?.myBooking;
 
-export default function MyTutorsPage() {
   return (
     <div className="pt-30 container mx-auto pb-10">
       <Table className={'border border-[#dddd] rounded-lg'}>
@@ -76,13 +35,13 @@ export default function MyTutorsPage() {
             <TableRow key={index}>
               {/* Tutor */}
               <TableCell className="flex items-center gap-3 font-medium">
-                <Image
-                  src={tutor.image}
-                  width={40}
-                  height={40}
+                {/* <Image
+                  src={tutor.user.image}
+                  width={20}
+                  height={20}
                   className="rounded-full"
                   alt="tutor"
-                />
+                /> */}
                 {tutor.name}
               </TableCell>
 
@@ -91,7 +50,7 @@ export default function MyTutorsPage() {
 
               {/* Fee */}
               <TableCell className="text-blue-600 font-semibold">
-                ${tutor.fee}/hr
+                ${tutor.price}/hr
               </TableCell>
 
               {/* Slots */}
@@ -99,20 +58,28 @@ export default function MyTutorsPage() {
 
               {/* Status */}
               <TableCell>
-                <span className="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700">
-                  {tutor.status}
+                <span
+                  className={`px-3 py-1 text-xs font-medium rounded-full ${
+                    tutor.status
+                      ? 'bg-green-100 text-green-700 border border-green-200'
+                      : 'bg-red-100 text-red-600 border border-red-200'
+                  }`}
+                >
+                  {tutor.status ? 'Active' : 'Cancelled'}
                 </span>
               </TableCell>
 
               {/* Actions */}
               <TableCell className="text-right flex gap-2 justify-end">
-                <Button
-                  size="icon"
-                  variant="outline"
-                  className={'cursor-pointer'}
-                >
-                  <Eye size={16} />
-                </Button>
+                <Link href={`/tutors/${tutor?.tutorId}`}>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className={'cursor-pointer'}
+                  >
+                    <Eye size={16} />
+                  </Button>
+                </Link>
 
                 <Button
                   size="icon"

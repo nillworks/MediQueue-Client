@@ -1,4 +1,4 @@
-import MyTutorsPage from '@/Components/MyTutor/MyTutorsPage';
+import { MyTutorsPage } from '@/Components/MyTutor/MyTutorsPage';
 
 const page = () => {
   return (
