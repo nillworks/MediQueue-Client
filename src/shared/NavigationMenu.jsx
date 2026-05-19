@@ -89,7 +89,7 @@ const NavigationMenu = () => {
                     <Image
                       width={32}
                       height={32}
-                      src={user?.image || '/avatar.png'}
+                      src={user?.image}
                       alt={user?.name || 'user'}
                       className="h-8 w-8 rounded-full border-2 border-white object-cover"
                     />

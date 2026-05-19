@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { authClient } from '@/lib/auth-client';
 import { toast } from '@heroui/react';
+import { Lock, Mail } from 'lucide-react';
 
 const SignInPage = () => {
   const [showPass, setShowPass] = useState(false);
@@ -85,9 +86,17 @@ const SignInPage = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    const { data, error } = await authClient.signIn.social({
+    const { error } = await authClient.signIn.social({
       provider: 'google',
     });
+
+    if (error) {
+      toast.danger('Login failed', {
+        description: error.message || 'Something went wrong',
+        variant: 'danger',
+      });
+      return;
+    }
   };
 
   return (
@@ -137,13 +146,19 @@ const SignInPage = () => {
             <form onSubmit={handleLogin} className="space-y-4">
               {/* EMAIL */}
               <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <Mail size={16} />
+                  Email Address
+                </label>
+
                 <input
                   name="email"
                   type="email"
                   placeholder="Enter your valid email address"
                   className={`w-full px-4 py-3 rounded-xl border outline-none dark:bg-[#111827] dark:text-white
-                  ${errors.email ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
+                             ${errors.email ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
+
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                 )}
@@ -151,20 +166,29 @@ const SignInPage = () => {
 
               {/* PASSWORD */}
               <div className="relative">
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <Lock size={16} />
+                  Password
+                </label>
+
                 <input
                   name="password"
                   type={showPass ? 'text' : 'password'}
                   placeholder="Enter your password"
                   className={`w-full px-4 py-3 rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
-                  ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
+      ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                  className="absolute right-3 top-[38px] text-gray-500"
                 >
-                  {showPass ? <FaEyeSlash /> : <FaEye />}
+                  {showPass ? (
+                    <FaEyeSlash className="cursor-pointer" />
+                  ) : (
+                    <FaEye className="cursor-pointer" />
+                  )}
                 </button>
 
                 {errors.password && (
@@ -172,7 +196,7 @@ const SignInPage = () => {
                 )}
               </div>
 
-              {/*  REMEMBER */}
+              {/* REMEMBER */}
               <div className="flex justify-between text-sm items-center">
                 <label className="flex gap-2 items-center cursor-pointer">
                   <input

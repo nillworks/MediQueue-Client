@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { Input, toast } from '@heroui/react';
-import { authClient } from '@/lib/auth-client';
+import { authClient, signOut } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { ImageIcon, Lock, Mail, User } from 'lucide-react';
 
 const SignUpPage = () => {
   const [showPass, setShowPass] = useState(false);
@@ -62,6 +63,7 @@ const SignUpPage = () => {
     setTimeout(() => {
       setLoading(false);
       if (data) {
+        signOut();
         toast.success('Account created successfully', {
           description:
             'Your account has been created. You can now Register in.',
@@ -80,6 +82,21 @@ const SignUpPage = () => {
     }, 100);
 
     e.target.reset();
+  };
+
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: 'google',
+      callbackURL: '/',
+    });
+
+    if (error) {
+      toast.danger('Login failed', {
+        description: error.message || 'Something went wrong',
+        variant: 'danger',
+      });
+      return;
+    }
   };
 
   return (
@@ -135,10 +152,15 @@ const SignUpPage = () => {
             <form onSubmit={handleRegister} className="space-y-4">
               {/* NAME */}
               <div>
+                <label className="flex items-center gap-2 text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+                  <User size={16} />
+                  Full Name
+                </label>
                 <Input
                   name="name"
                   placeholder="Your Full Name"
-                  className="w-full"
+                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.name && (
                   <p className="text-red-500 text-sm">{errors.name}</p>
@@ -147,11 +169,16 @@ const SignUpPage = () => {
 
               {/* EMAIL */}
               <div>
+                <label className="flex items-center gap-2 text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+                  <Mail size={16} />
+                  Email Address
+                </label>
                 <Input
                   name="email"
                   type="email"
                   placeholder="Enter your valid email address"
-                  className="w-full"
+                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm">{errors.email}</p>
@@ -160,10 +187,16 @@ const SignUpPage = () => {
 
               {/* PHOTO */}
               <div>
+                <label className="flex items-center gap-2 text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+                  <ImageIcon size={16} />
+                  Photo URL
+                </label>
                 <Input
                   name="photo"
-                  placeholder=" Valid Photo URL"
-                  className="w-full"
+                  pattern="https?://.*"
+                  placeholder="Valid Photo URL"
+                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.photo && (
                   <p className="text-red-500 text-sm">{errors.photo}</p>
@@ -172,19 +205,29 @@ const SignUpPage = () => {
 
               {/* PASSWORD */}
               <div className="relative">
+                <label className="flex items-center gap-2 text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+                  <Lock size={16} />
+                  Password
+                </label>
+
                 <Input
                   name="password"
                   type={showPass ? 'text' : 'password'}
                   placeholder="Password"
-                  className="w-full"
+                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                  className="absolute right-3 top-[38px] text-gray-500"
                 >
-                  {showPass ? <FaEyeSlash /> : <FaEye />}
+                  {showPass ? (
+                    <FaEyeSlash className="cursor-pointer" />
+                  ) : (
+                    <FaEye className="cursor-pointer" />
+                  )}
                 </button>
 
                 {errors.password && (
@@ -194,19 +237,29 @@ const SignUpPage = () => {
 
               {/* CONFIRM PASSWORD */}
               <div className="relative">
+                <label className="flex items-center gap-2 text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+                  <Lock size={16} />
+                  Confirm Password
+                </label>
+
                 <Input
                   name="confirmPassword"
                   type={showConfirm ? 'text' : 'password'}
                   placeholder="Confirm Password"
-                  className="w-full"
+                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                  className="absolute right-3 top-[38px] text-gray-500"
                 >
-                  {showConfirm ? <FaEyeSlash /> : <FaEye />}
+                  {showConfirm ? (
+                    <FaEyeSlash className="cursor-pointer" />
+                  ) : (
+                    <FaEye className="cursor-pointer" />
+                  )}
                 </button>
 
                 {errors.confirmPassword && (
@@ -219,14 +272,17 @@ const SignUpPage = () => {
               {/* BUTTON */}
               <button
                 disabled={loading}
-                className="w-full py-3 rounded-xl bg-blue-600 cursor-pointer  duration-300  text-white font-semibold hover:bg-blue-700 transition"
+                className="w-full py-3 rounded-xl bg-blue-600 cursor-pointer duration-300 text-white font-semibold hover:bg-blue-700 transition"
               >
                 {loading ? 'Loading...' : 'Register'}
               </button>
             </form>
 
             {/* GOOGLE */}
-            <button className="w-full mt-4 border py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-50">
+            <button
+              onClick={handleGoogleSignIn}
+              className="w-full mt-4 border py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-50"
+            >
               <FcGoogle />
               Continue with Google
             </button>

@@ -8,7 +8,7 @@ const BookingSession = ({ singleData }) => {
   const { data } = useSession();
   const user = data?.user;
 
-  const submitBooing = event => {
+  const submitBooing = async event => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -18,6 +18,9 @@ const BookingSession = ({ singleData }) => {
       user,
       slots: singleData.slots,
     };
+
+    // post Confirm Booing
+    const req = await fetch();
 
     console.log(bookingData);
   };
@@ -49,14 +52,17 @@ const BookingSession = ({ singleData }) => {
                 <Image
                   width={200}
                   height={200}
-                  src={user?.image || '/avatar.png'}
+                  src={
+                    user?.image ||
+                    'https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff'
+                  }
                   className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
-                  alt="tutor"
+                  alt="student"
                 />
 
                 <div>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {user?.name || 'Tutor Name'}
+                    {user?.name || 'Student Profile Name'}
                   </p>
                   <p className="text-sm text-blue-600 dark:text-blue-400">
                     {singleData?.subject || 'Subject'} •{' '}

@@ -1,8 +1,6 @@
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import SignInPage from './../app/(auth)/signin/page';
 
 const TutorsCard = ({ tutor }) => {
   const {
@@ -57,11 +55,7 @@ const TutorsCard = ({ tutor }) => {
       {/* Image */}
       <div className="relative h-[190px] overflow-hidden">
         <Image
-          src={
-            image && image.startsWith('http')
-              ? image
-              : 'https://cdn-icons-png.flaticon.com/512/13434/13434972.png'
-          }
+          src={image}
           alt={name}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"

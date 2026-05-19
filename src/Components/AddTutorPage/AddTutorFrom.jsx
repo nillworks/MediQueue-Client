@@ -1,6 +1,7 @@
 'use client';
 
 import { useSession } from '@/lib/auth-client';
+import { toast } from '@heroui/react';
 
 const AddTutorForm = () => {
   const { data } = useSession();
@@ -51,8 +52,19 @@ const AddTutorForm = () => {
     });
 
     const res = await req.json();
-    console.log(res);
-
+    if (res.acknowledged === true) {
+      toast.success('Tutor Added Successfully', {
+        description: 'Your tutor is now live and visible to students.',
+        variant: 'success',
+      });
+    } else {
+      toast.danger('Failed to Add Tutor', {
+        description:
+          error?.message || 'Something went wrong. Please try again.',
+        variant: 'danger',
+      });
+      return;
+    }
     e.target.reset();
   };
 
@@ -112,6 +124,7 @@ const AddTutorForm = () => {
                 required
                 type="text"
                 placeholder="Paste image link"
+                pattern="https?://.*"
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
               />
             </div>
