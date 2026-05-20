@@ -1,4 +1,5 @@
 'use client';
+import { authClient } from '@/lib/auth-client';
 import {
   Button,
   Input,
@@ -52,11 +53,15 @@ const EditTutorModal = ({ tutorsData }) => {
 
     setLoading(true);
     // Update Tutor List
+    const { data: tokenData } = await authClient.token();
     const req = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/tutors/${tutorsData?._id}`,
       {
         method: 'PATCH',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${tokenData?.token}`,
+        },
         body: JSON.stringify(finalUpdateData),
       },
     );

@@ -1,5 +1,6 @@
 'use client';
 
+import { authClient } from '@/lib/auth-client';
 import { AlertDialog, Button, CloseIcon, toast } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 
@@ -8,11 +9,16 @@ const CancelBooked = ({ BookingData }) => {
   const router = useRouter();
 
   const handleCancelBooking = async () => {
+    const { data: tokenData } = await authClient.token();
+
     const req = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/myBooking/${BookingData?._id}`,
       {
         method: 'PATCH',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${tokenData?.token}`,
+        },
       },
     );
 

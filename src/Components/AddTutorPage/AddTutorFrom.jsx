@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from '@/lib/auth-client';
+import { authClient, useSession } from '@/lib/auth-client';
 import { toast } from '@heroui/react';
 
 const AddTutorForm = () => {
@@ -46,9 +46,14 @@ const AddTutorForm = () => {
       accountInfo: user,
     };
 
+    const { data: tokenData } = await authClient.token();
+
     const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tutors`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${tokenData?.token}`,
+      },
       body: JSON.stringify(finalData),
     });
 

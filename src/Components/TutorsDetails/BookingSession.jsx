@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from '@/lib/auth-client';
+import { authClient, useSession } from '@/lib/auth-client';
 import {
   Button,
   Input,
@@ -52,11 +52,15 @@ const BookingSession = ({ singleData }) => {
       BookingStatus: true,
     };
     setLoading(true);
+    const { data: tokenData } = await authClient.token();
 
     // post Confirm Booing
     const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/myBooking`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${tokenData?.token}`,
+      },
       body: JSON.stringify(bookingData),
     });
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { authClient } from '@/lib/auth-client';
 import { AlertDialog, Button, toast } from '@heroui/react';
 import { Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -8,10 +9,13 @@ const DeleteTutor = ({ tutorsData }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
+    const { data: tokenData } = await authClient.token();
+
     const req = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/tutors/${tutorsData?._id}`,
       {
         method: 'DELETE',
+        headers: { authorization: `Bearer ${tokenData?.token}` },
       },
     );
     const res = await req.json();
