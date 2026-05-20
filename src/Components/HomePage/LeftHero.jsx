@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const LeftHero = () => {
   return (
     <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
@@ -30,18 +32,22 @@ const LeftHero = () => {
 
       {/* Buttons */}
       <div className="mt-8 flex flex-col sm:flex-row sm:justify-center items-center lg:justify-start lg:items-start gap-4">
-        <button className="group w-full cursor-pointer sm:w-auto px-7 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xl shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1">
-          <span className="flex items-center justify-center gap-2">
-            Find Tutors
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
+        <Link href={'/tutors'}>
+          <button className="group w-full cursor-pointer sm:w-auto px-7 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xl shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1">
+            <span className="flex items-center justify-center gap-2">
+              Find Tutors
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </span>
-          </span>
-        </button>
+          </button>
+        </Link>
 
-        <button className="w-full cursor-pointer sm:w-auto px-7 py-4 rounded-2xl bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800 font-semibold shadow-sm transition-all duration-300 hover:-translate-y-1">
-          Book Session
-        </button>
+        <Link href={'/tutors'}>
+          <button className="w-full cursor-pointer sm:w-auto px-7 py-4 rounded-2xl bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800 font-semibold shadow-sm transition-all duration-300 hover:-translate-y-1">
+            Book Session
+          </button>
+        </Link>
       </div>
 
       {/* Ratings */}

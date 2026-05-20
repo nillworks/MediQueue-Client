@@ -21,7 +21,6 @@ const MyBookedSession = async () => {
 
   const MyBookingData = await getMyBookingData(session?.user.id);
   const MyBooking = MyBookingData?.myBooking;
-  console.log(MyBooking);
 
   return (
     <>

@@ -7,13 +7,25 @@ import MobileMenu from './MobileMenu';
 import Image from 'next/image';
 import { signOut, useSession } from '@/lib/auth-client';
 import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { toast } from '@heroui/react';
 
 const NavigationMenu = () => {
   const { data } = useSession();
   const user = data?.user;
+  const router = useRouter();
 
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const handleSignOut = () => {
+    signOut();
+    toast.success('Signed out successfully', {
+      description: 'You have been logged out of your account.',
+      variant: 'success',
+    });
+    router.push('/signin');
+  };
 
   // outside click close
   useEffect(() => {
@@ -117,14 +129,14 @@ const NavigationMenu = () => {
                       </Link>
 
                       <Link
-                        href="/my-sessions"
+                        href="/my-booked-session"
                         className="block px-4 py-2 text-sm hover:bg-gray-100"
                       >
                         My Sessions
                       </Link>
 
                       <button
-                        onClick={() => signOut()}
+                        onClick={handleSignOut}
                         className="w-full cursor-pointer text-left px-4 py-2 text-sm hover:bg-red-100 text-red-500"
                       >
                         Logout

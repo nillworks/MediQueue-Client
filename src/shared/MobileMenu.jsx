@@ -6,9 +6,19 @@ import { Menu, X } from 'lucide-react';
 import ActiveLink from './ActiveLink';
 import Image from 'next/image';
 import { signOut } from '@/lib/auth-client';
+import { toast } from '@heroui/react';
 
 const MobileMenu = ({ navLinks, user }) => {
   const [open, setOpen] = useState(false);
+  const handleSignOut = () => {
+    signOut();
+    toast.success('Signed out successfully', {
+      description: 'You have been logged out of your account.',
+      variant: 'success',
+    });
+    router.push('/signin');
+    setOpen(false);
+  };
 
   return (
     <>
@@ -78,10 +88,7 @@ const MobileMenu = ({ navLinks, user }) => {
         <div className="mt-5 border-t pt-4">
           {user ? (
             <button
-              onClick={() => {
-                signOut();
-                setOpen(false);
-              }}
+              onClick={handleSignOut}
               className="w-full cursor-pointer rounded-xl bg-red-100 py-2 text-red-500 font-medium hover:bg-red-200"
             >
               Logout

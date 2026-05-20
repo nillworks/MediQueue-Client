@@ -9,7 +9,7 @@ const TutorsAll = async () => {
   const tutorsData = data?.tutors;
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 pt-30 py-8">
+    <section className="w-full container mx-auto px-4 pt-30 py-8">
       {/* 1. Hero Banner Section */}
       <div
         className="relative w-full rounded-[24px] md:rounded-[32px] overflow-hidden bg-slate-900 bg-cover bg-center min-h-[180px] md:min-h-[240px] flex flex-col justify-center px-6 md:px-12 shadow-sm"

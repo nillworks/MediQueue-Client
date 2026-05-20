@@ -26,9 +26,6 @@ const BookingSession = ({ singleData }) => {
   const today = new Date();
   const sessionStart = new Date(singleData?.sessionStartDate);
   const sessionEnd = new Date(singleData?.sessionEndDate);
-  // console.log(sessionStart);
-  // console.log(sessionEnd);
-  // console.log(today);
 
   // booking allowed?
   const isBeforeStart = today < sessionStart;
@@ -85,7 +82,6 @@ const BookingSession = ({ singleData }) => {
       });
       return;
     }
-    console.log(res);
   };
 
   return (

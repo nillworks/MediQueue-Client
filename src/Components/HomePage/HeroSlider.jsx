@@ -46,7 +46,7 @@ const slides = [
 const HeroSlider = () => {
   return (
     <section className="px-4 py-8 lg:pt-10">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         <div className="relative rounded-[28px] overflow-hidden shadow-2xl">
           {/* Custom Buttons */}
           <div className="hero-prev absolute left-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white flex items-center justify-center cursor-pointer hover:bg-white hover:text-black transition-all duration-300">

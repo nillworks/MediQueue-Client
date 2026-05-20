@@ -54,7 +54,7 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section className="py-20 px-4 bg-[#fcfdff] overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
           <span className="inline-block px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold tracking-wide mb-5">

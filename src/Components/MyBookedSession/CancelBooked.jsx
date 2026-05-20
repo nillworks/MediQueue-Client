@@ -7,8 +7,6 @@ const CancelBooked = ({ BookingData }) => {
   const isActive = BookingData?.BookingStatus;
   const router = useRouter();
 
-  console.log(BookingData);
-
   const handleCancelBooking = async () => {
     const req = await fetch(
       `http://localhost:8000/myBooking/${BookingData?._id}`,

@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
 
   return (
     <section className="bg-white py-20 px-6 md:px-12 lg:px-20">
-      <div className=" lg:container 2xl:max-w-7xl mx-auto">
+      <div className="container  mx-auto">
         {/* Section Header */}
         <div className="text-center mb-14">
           <span className="text-blue-600 text-xs md:text-sm font-bold uppercase tracking-widest block mb-3">
