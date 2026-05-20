@@ -5,7 +5,7 @@ import { toast } from '@heroui/react';
 
 const AddTutorForm = () => {
   const { data } = useSession();
-  const user = data.user;
+  const user = data?.user;
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -46,7 +46,7 @@ const AddTutorForm = () => {
       accountInfo: user,
     };
 
-    const req = await fetch(`http://localhost:8000/tutors`, {
+    const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tutors`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(finalData),

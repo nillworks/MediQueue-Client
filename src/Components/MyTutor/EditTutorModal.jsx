@@ -52,11 +52,14 @@ const EditTutorModal = ({ tutorsData }) => {
 
     setLoading(true);
     // Update Tutor List
-    const req = await fetch(`http://localhost:8000/tutors/${tutorsData?._id}`, {
-      method: 'PATCH',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(finalUpdateData),
-    });
+    const req = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/tutors/${tutorsData?._id}`,
+      {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(finalUpdateData),
+      },
+    );
 
     const res = await req.json();
 

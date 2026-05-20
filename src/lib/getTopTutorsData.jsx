@@ -1,5 +1,5 @@
 const getTopTutorsData = async () => {
-  const res = await fetch(`http://localhost:8000/topTutors`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topTutors`);
   return res.json();
 };
 

@@ -54,7 +54,7 @@ const BookingSession = ({ singleData }) => {
     setLoading(true);
 
     // post Confirm Booing
-    const req = await fetch(`http://localhost:8000/myBooking`, {
+    const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/myBooking`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(bookingData),

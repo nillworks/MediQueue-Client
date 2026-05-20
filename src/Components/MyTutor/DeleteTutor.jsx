@@ -8,9 +8,12 @@ const DeleteTutor = ({ tutorsData }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
-    const req = await fetch(`http://localhost:8000/tutors/${tutorsData?._id}`, {
-      method: 'DELETE',
-    });
+    const req = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/tutors/${tutorsData?._id}`,
+      {
+        method: 'DELETE',
+      },
+    );
     const res = await req.json();
 
     if (res.acknowledged === true) {

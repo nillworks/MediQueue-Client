@@ -9,7 +9,7 @@ const CancelBooked = ({ BookingData }) => {
 
   const handleCancelBooking = async () => {
     const req = await fetch(
-      `http://localhost:8000/myBooking/${BookingData?._id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/myBooking/${BookingData?._id}`,
       {
         method: 'PATCH',
         headers: { 'content-type': 'application/json' },

@@ -1,5 +1,5 @@
 import { Eye } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/Components/ui/button';
 import {
   Table,
   TableBody,
@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from '@/Components/ui/table';
 
 import Link from 'next/link';
 import EditTutorModal from './EditTutorModal';
