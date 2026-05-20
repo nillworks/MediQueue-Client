@@ -42,12 +42,12 @@ const EditTutorModal = ({ tutorsData }) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const updateTutorData = Object.fromEntries(formData.entries());
-
     const availableDays = formData.getAll('days');
 
     const finalUpdateData = {
       ...updateTutorData,
       days: availableDays,
+      slots: Number(updateTutorData?.slots),
     };
 
     setLoading(true);

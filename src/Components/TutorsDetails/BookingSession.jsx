@@ -20,6 +20,20 @@ const BookingSession = ({ singleData }) => {
   const { data } = useSession();
   const user = data?.user;
   const router = useRouter();
+  const availableSlots = Number(singleData?.slots);
+  const isDisabled = !user || availableSlots <= 0;
+
+  const today = new Date();
+  const sessionStart = new Date(singleData?.sessionStartDate);
+  const sessionEnd = new Date(singleData?.sessionEndDate);
+  // console.log(sessionStart);
+  // console.log(sessionEnd);
+  // console.log(today);
+
+  // booking allowed?
+  const isBeforeStart = today < sessionStart;
+  const isAfterEnd = today > sessionEnd;
+  const isDateInvalid = isBeforeStart || isAfterEnd;
 
   const submitBooing = async event => {
     event.preventDefault();
@@ -28,12 +42,17 @@ const BookingSession = ({ singleData }) => {
     const data = Object.fromEntries(formData.entries());
     const bookingData = {
       ...data,
-      accountInfo: user,
-      slots: singleData.slots,
-      tutorId: singleData._id,
-      status: true,
+      accountInfo: {
+        id: user?.id,
+        name: user?.name,
+        email: user?.email,
+      },
+      tutorId: singleData?._id,
+      tutorName: singleData?.name,
+      subject: singleData?.subject,
+      price: singleData?.price,
+      slots: Number(singleData?.slots),
       BookingStatus: true,
-      ...singleData,
     };
     setLoading(true);
 
@@ -66,16 +85,41 @@ const BookingSession = ({ singleData }) => {
       });
       return;
     }
+    console.log(res);
   };
 
   return (
     <Modal open={open} onOpenChange={setOpen}>
-      <Button
-        onClick={() => setOpen(true)}
-        className="bg-blue-600 w-full rounded-lg text-white font-medium py-5"
-      >
-        {user ? 'Book Now' : 'Login to Book'}
-      </Button>
+      {availableSlots <= 0 || isDateInvalid ? (
+        <button
+          disabled={isDisabled || isDateInvalid}
+          onClick={() => {
+            if (!isDisabled && !isDateInvalid) setOpen(true);
+          }}
+          className={`w-full py-3 rounded-lg text-white
+          ${
+            isDisabled || isDateInvalid
+              ? 'bg-gray-300 cursor-not-allowed'
+              : 'bg-blue-600 cursor-pointer'
+          }
+  `}
+        >
+          {isBeforeStart
+            ? 'Booking not available yet'
+            : isAfterEnd
+              ? 'Session expired'
+              : user
+                ? 'Book Now'
+                : 'Login to Book'}
+        </button>
+      ) : (
+        <Button
+          onClick={() => setOpen(true)}
+          className="bg-blue-600 w-full cursor-pointer rounded-lg text-white font-medium py-3"
+        >
+          {user ? 'Book Now' : 'Login to Book'}
+        </Button>
+      )}
 
       <Modal.Backdrop>
         <Modal.Container placement="auto">
@@ -136,7 +180,6 @@ const BookingSession = ({ singleData }) => {
                       className="rounded-xl"
                     />
                   </TextField>
-
                   {/* studentName */}
                   <TextField
                     defaultValue={user?.name}
@@ -150,7 +193,6 @@ const BookingSession = ({ singleData }) => {
                       className="rounded-xl"
                     />
                   </TextField>
-
                   {/* email */}
                   <TextField
                     defaultValue={user?.email}
@@ -164,7 +206,6 @@ const BookingSession = ({ singleData }) => {
                       className="rounded-xl"
                     />
                   </TextField>
-
                   {/* Phone */}
                   <TextField className="w-full" name="phone" type="tel">
                     <Label>Phone</Label>
@@ -174,7 +215,6 @@ const BookingSession = ({ singleData }) => {
                       className="rounded-xl"
                     />
                   </TextField>
-
                   {/* Preferred Date */}
                   <TextField className="w-full" name="PreferredDate">
                     <Label>Preferred Date</Label>

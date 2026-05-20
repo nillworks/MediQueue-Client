@@ -108,7 +108,7 @@ const MyBookedSession = async () => {
 
                 {/* Actions */}
                 <TableCell className="text-right flex gap-2 justify-end">
-                  <Link href={`/tutors/${Booking?._id}`}>
+                  <Link href={`/tutors/${Booking?.tutorId}`}>
                     <Button
                       size="icon"
                       variant="outline"
