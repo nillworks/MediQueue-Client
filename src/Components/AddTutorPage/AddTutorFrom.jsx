@@ -25,6 +25,7 @@ const AddTutorForm = () => {
       name: rawData.tutorName,
       subject: rawData.subject,
       university: rawData.institution,
+      status: true,
 
       schedule: {
         startTime: toMinutes(rawData.startTime),

@@ -100,7 +100,7 @@ export async function MyTutorsPage() {
 
                 {/* Actions */}
                 <TableCell className="text-right flex gap-2 justify-end">
-                  <Link href={`/tutors/${tutor?.tutorId}`}>
+                  <Link href={`/tutors/${tutor?._id}`}>
                     <Button
                       size="icon"
                       variant="outline"

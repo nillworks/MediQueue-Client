@@ -62,8 +62,6 @@ const BookingSession = ({ singleData }) => {
     }
   };
 
-  console.log(open);
-
   return (
     <Modal open={open} onOpenChange={setOpen}>
       <Button

@@ -9,11 +9,26 @@ import {
   toast,
 } from '@heroui/react';
 import { Edit } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const EditTutorModal = ({ tutorsData }) => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [selectedDays, setSelectedDays] = useState([]);
+
+  useEffect(() => {
+    if (tutorsData?.days) {
+      setSelectedDays(tutorsData.days || []);
+    }
+  }, [tutorsData]);
+
+  const handleDayChange = day => {
+    if (selectedDays.includes(day)) {
+      setSelectedDays(selectedDays.filter(d => d !== day));
+    } else {
+      setSelectedDays([...selectedDays, day]);
+    }
+  };
 
   const minutesToTime = minutes => {
     const h = String(Math.floor(minutes / 60)).padStart(2, '0');
@@ -26,9 +41,38 @@ const EditTutorModal = ({ tutorsData }) => {
     const formData = new FormData(event.target);
     const updateTutorData = Object.fromEntries(formData.entries());
 
-    console.log(updateTutorData);
+    const availableDays = formData.getAll('days');
 
-    setLoading(false);
+    const finalUpdateData = {
+      ...updateTutorData,
+      days: availableDays,
+    };
+
+    setLoading(true);
+    // Update Tutor List
+    const req = await fetch(`http://localhost:8000/tutors/${tutorsData?._id}`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(finalUpdateData),
+    });
+
+    const res = await req.json();
+
+    if (res.acknowledged === true) {
+      setLoading(false);
+      toast.success('Tutor Update Successfully', {
+        description: 'Your tutor is Update now live and visible to students.',
+        variant: 'success',
+      });
+    } else {
+      toast.danger('Failed to update tutor', {
+        description:
+          error?.message || 'Something went wrong. Please try again.',
+        variant: 'danger',
+      });
+      return;
+    }
+
     document.querySelector('[data-slot="modal-close-trigger"]')?.click();
     event.target.reset();
   };
@@ -51,7 +95,7 @@ const EditTutorModal = ({ tutorsData }) => {
               <Modal.CloseTrigger className="text-blue-400" />
 
               {/* HEADER */}
-              <Modal.Header className="px-6 py-5 border-b border-gray-100 dark:border-zinc-800 bg-gradient-to-r from-blue-50 to-white dark:from-zinc-900 dark:to-zinc-900">
+              <Modal.Header className="px-6 py-5 border-b rounded-lg border-gray-100 dark:border-zinc-800 bg-gradient-to-r from-blue-50 to-white dark:from-zinc-900 dark:to-zinc-900">
                 <Modal.Heading className="text-xl font-bold text-blue-600 dark:text-white">
                   Update Tutor information
                 </Modal.Heading>
@@ -192,18 +236,18 @@ const EditTutorModal = ({ tutorsData }) => {
                       <div className="flex flex-wrap gap-2">
                         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(
                           day => (
-                            <label
-                              key={day}
-                              className="flex items-center gap-1"
-                            >
-                              <input
-                                type="checkbox"
-                                name="days"
-                                value={day}
-                                defaultChecked={tutorsData?.days?.includes(day)}
-                              />
-                              {day}
-                            </label>
+                            <TextField key={day}>
+                              <Label className="flex items-center gap-1">
+                                <Input
+                                  type="checkbox"
+                                  name="days"
+                                  checked={selectedDays.includes(day)}
+                                  value={day}
+                                  onChange={() => handleDayChange(day)}
+                                />
+                                {day}
+                              </Label>
+                            </TextField>
                           ),
                         )}
                       </div>
