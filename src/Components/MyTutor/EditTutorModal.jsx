@@ -9,12 +9,14 @@ import {
   toast,
 } from '@heroui/react';
 import { Edit } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const EditTutorModal = ({ tutorsData }) => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [selectedDays, setSelectedDays] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     if (tutorsData?.days) {
@@ -60,6 +62,7 @@ const EditTutorModal = ({ tutorsData }) => {
 
     if (res.acknowledged === true) {
       setLoading(false);
+      router.refresh();
       toast.success('Tutor Update Successfully', {
         description: 'Your tutor is Update now live and visible to students.',
         variant: 'success',

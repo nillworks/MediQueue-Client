@@ -1,4 +1,4 @@
-import { Eye } from 'lucide-react';
+import { Eye, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -8,52 +8,52 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-
 import Link from 'next/link';
-import EditTutorModal from './EditTutorModal';
-import getTutorListData from '@/lib/getTutorListData';
-import { auth } from '@/lib/auth';
+import getMyBookingData from '@/lib/getMyBookingData';
 import { headers } from 'next/headers';
-import DeleteTutor from './DeleteTutor';
+import { auth } from '@/lib/auth';
+import CancelBooked from './CancelBooked';
 
-export async function MyTutorsPage() {
+const MyBookedSession = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  const data = await getTutorListData(session?.user?.id);
-  const tutors = data?.tutorsList;
+  const MyBookingData = await getMyBookingData(session?.user.id);
+  const MyBooking = MyBookingData?.myBooking;
+  console.log(MyBooking);
 
   return (
-    <div className="pt-30 container mx-auto pb-10">
+    <>
       <div className=" flex flex-col pb-8">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800">
-          My Tutors
+          My Booked Sessions
         </h2>
 
         <p className="mt-2 text-sm sm:text-base text-gray-500">
-          Manage your registered tutors
+          Track and manage your learning sessions
         </p>
       </div>
+
       <Table className={'border border-[#dddd] rounded-lg'}>
         <TableHeader className={'hover:bg-transparent'}>
           <TableRow className={'hover:bg-transparent'}>
+            <TableHead>Name</TableHead>
+            <TableHead>Phone</TableHead>
             <TableHead>Tutor Name</TableHead>
-            <TableHead>Subject</TableHead>
-            <TableHead>Fee</TableHead>
-            <TableHead>Slots</TableHead>
+            <TableHead>Email</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead className="text-right">Cancel</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          {tutors.length === 0 ? (
+          {MyBooking.length === 0 ? (
             <TableRow className={'hover:bg-transparent'}>
               <TableCell colSpan={6} className="text-center py-10">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <p className="text-lg font-semibold text-gray-700">
-                    No Tutors Data Added
+                    No Booking Data
                   </p>
 
                   <p className="text-sm text-gray-500">
@@ -61,16 +61,16 @@ export async function MyTutorsPage() {
                     tutor.
                   </p>
 
-                  <Link href={'/add-tutor'}>
+                  <Link href={'/tutors'}>
                     <Button className="mt-2 cursor-pointer bg-blue-600 text-white hover:bg-blue-700">
-                      Add Tutor
+                      Book Now
                     </Button>
                   </Link>
                 </div>
               </TableCell>
             </TableRow>
           ) : (
-            tutors.map((tutor, index) => (
+            MyBooking.map((Booking, index) => (
               <TableRow key={index} className={'hover:bg-transparent'}>
                 {/* Tutor */}
                 <TableCell className="flex items-center gap-3 font-medium">
@@ -81,36 +81,34 @@ export async function MyTutorsPage() {
                   className="rounded-full"
                   alt="tutor"
                 /> */}
-                  {tutor.name}
+                  {Booking.accountInfo.name}
                 </TableCell>
 
                 {/* Subject */}
-                <TableCell>{tutor.subject}</TableCell>
+                <TableCell>{Booking?.phone}</TableCell>
 
                 {/* Fee */}
-                <TableCell className="text-blue-600 font-semibold">
-                  ${tutor.price}/hr
-                </TableCell>
+                <TableCell>{Booking.name}</TableCell>
 
                 {/* Slots */}
-                <TableCell>{tutor.slots}</TableCell>
+                <TableCell>{Booking.email}</TableCell>
 
                 {/* Status */}
                 <TableCell>
                   <span
                     className={`px-3 py-1 text-xs font-medium rounded-full ${
-                      tutor.status
+                      Booking.BookingStatus
                         ? 'bg-green-100 text-green-700 border border-green-200'
                         : 'bg-red-100 text-red-600 border border-red-200'
                     }`}
                   >
-                    {tutor.status ? 'Active' : 'Cancelled'}
+                    {Booking.BookingStatus ? 'Confirmed' : 'Cancelled'}
                   </span>
                 </TableCell>
 
                 {/* Actions */}
                 <TableCell className="text-right flex gap-2 justify-end">
-                  <Link href={`/tutors/${tutor?._id}`}>
+                  <Link href={`/tutors/${Booking?._id}`}>
                     <Button
                       size="icon"
                       variant="outline"
@@ -120,17 +118,15 @@ export async function MyTutorsPage() {
                     </Button>
                   </Link>
 
-                  {/* Edit */}
-                  <EditTutorModal tutorsData={tutor} />
-
-                  {/* Delete Tutor */}
-                  <DeleteTutor tutorsData={tutor} />
+                  <CancelBooked BookingData={Booking} />
                 </TableCell>
               </TableRow>
             ))
           )}
         </TableBody>
       </Table>
-    </div>
+    </>
   );
-}
+};
+
+export default MyBookedSession;

@@ -11,6 +11,7 @@ import {
   toast,
 } from '@heroui/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const BookingSession = ({ singleData }) => {
@@ -18,6 +19,7 @@ const BookingSession = ({ singleData }) => {
   const [open, setOpen] = useState(false);
   const { data } = useSession();
   const user = data?.user;
+  const router = useRouter();
 
   const submitBooing = async event => {
     event.preventDefault();
@@ -26,10 +28,11 @@ const BookingSession = ({ singleData }) => {
     const data = Object.fromEntries(formData.entries());
     const bookingData = {
       ...data,
-      user,
+      accountInfo: user,
       slots: singleData.slots,
       tutorId: singleData._id,
       status: true,
+      BookingStatus: true,
       ...singleData,
     };
     setLoading(true);
@@ -42,12 +45,15 @@ const BookingSession = ({ singleData }) => {
     });
 
     const res = await req.json();
+    if (!req.ok) {
+      throw new Error('Network response was not ok');
+    }
 
     if (res.acknowledged === true) {
       setLoading(false);
 
       document.querySelector('[data-slot="modal-close-trigger"]')?.click();
-
+      router.refresh();
       toast.success('Booking Confirmed Successfully', {
         description:
           'Your tutoring session has been successfully booked. We will contact you soon.',
