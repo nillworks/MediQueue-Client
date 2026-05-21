@@ -12,8 +12,8 @@
 
 MediQueue solves the problem of scattered, unorganized tutor discovery by providing a **single unified platform** where students can search, filter, and book sessions with verified tutors — while tutors can manage their profiles, availability slots, and track bookings in real time.
 
-🔗 **Live Site:** [MediQueue on Vercel](https://your-live-link.vercel.app)
-🔗 **Backend API:** [API on Vercel](https://your-api-link.vercel.app)
+🔗 **Live Site:** [MediQueue on Vercel](https://mediqueue-chi.vercel.app/)
+🔗 **Backend API:** [API on Vercel](https://mediqueue-server-murex.vercel.app/)
 
 ---
 
@@ -523,72 +523,19 @@ backend/
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 20+
-- MongoDB Atlas account
-- Google OAuth credentials (for social login)
-
-### Installation
-
-**1. Clone the repository**
-```bash
-git clone https://github.com/your-username/mediqueue.git
-cd mediqueue
-```
-
-**2. Setup Backend**
-```bash
-cd backend
-npm install
-npm run server
-```
-
-**3. Setup Frontend**
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-The frontend runs on `http://localhost:3000` and the backend on `http://localhost:8000`.
-
----
-
-## 🔑 Environment Variables
-
-### Frontend (`/frontend/.env`)
-```env
-MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/<dbname>
-BETTER_AUTH_SECRET=your_secret_key
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-NEXT_PUBLIC_API_URL=http://localhost:8000
-```
-
-### Backend (`/backend/.env`)
-```env
-DB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/<dbname>
-CLIENT_URL=http://localhost:3000
-```
-
----
-
-## 🔮 Future Improvements
+##  Future Improvements
 
 | Improvement | Description |
 |---|---|
-| 💬 **Real-time Chat** | Add Socket.io for student-tutor messaging |
-| 💳 **Payment Integration** | Stripe/SSLCommerz for paid session bookings |
-| ⭐ **Review System** | Allow students to rate and review tutors after sessions |
-| 📧 **Email Notifications** | Send booking confirmations via Nodemailer |
-| 📱 **PWA Support** | Make the app installable on mobile devices |
-| 🧪 **Testing** | Add unit tests with Jest and integration tests with Cypress |
-| 📊 **Admin Dashboard** | Admin panel for managing all tutors and bookings |
-| 🔍 **Advanced Filters** | Filter by subject, price range, rating, and location |
-| 📈 **Analytics** | Track booking trends and popular tutors |
+|  **Real-time Chat** | Add Socket.io for student-tutor messaging |
+|  **Payment Integration** | Stripe/SSLCommerz for paid session bookings |
+|  **Review System** | Allow students to rate and review tutors after sessions |
+|  **Email Notifications** | Send booking confirmations via Nodemailer |
+|  **PWA Support** | Make the app installable on mobile devices |
+|  **Testing** | Add unit tests with Jest and integration tests with Cypress |
+|  **Admin Dashboard** | Admin panel for managing all tutors and bookings |
+|  **Advanced Filters** | Filter by subject, price range, rating, and location |
+|  **Analytics** | Track booking trends and popular tutors |
 
 ---
 
@@ -608,5 +555,5 @@ This project reflects hands-on experience with the full software development lif
 ---
 
 <p align="center">
-  Built with ❤️ by <strong>Nill Ray</strong>
+  Built with ❤️ by <strong>Shipon Roy</strong>
 </p>
