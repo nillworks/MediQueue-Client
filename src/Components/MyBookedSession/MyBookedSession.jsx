@@ -25,16 +25,16 @@ const MyBookedSession = async () => {
   return (
     <>
       <div className=" flex flex-col pb-8 px-3">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-white transition-colors">
           My Booked Sessions
         </h2>
 
-        <p className="mt-2 text-sm sm:text-base text-gray-500">
+        <p className="mt-2 text-sm sm:text-base text-gray-500 dark:text-gray-400 transition-colors">
           Track and manage your learning sessions
         </p>
       </div>
 
-      <Table className={'border border-[#dddd] mx-5 rounded-lg'}>
+      <Table className={'border border-[#dddd] dark:border-white/10 mx-5 rounded-lg'}>
         <TableHeader className={'hover:bg-transparent'}>
           <TableRow className={'hover:bg-transparent'}>
             <TableHead>Name</TableHead>
@@ -51,11 +51,11 @@ const MyBookedSession = async () => {
             <TableRow className={'hover:bg-transparent'}>
               <TableCell colSpan={6} className="text-center py-10">
                 <div className="flex flex-col items-center justify-center gap-3">
-                  <p className="text-lg font-semibold text-gray-700">
+                  <p className="text-lg font-semibold text-gray-700 dark:text-white">
                     No Booking Data
                   </p>
 
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     You haven’t added any tutor yet. Start by adding your first
                     tutor.
                   </p>
@@ -97,8 +97,8 @@ const MyBookedSession = async () => {
                   <span
                     className={`px-3 py-1 text-xs font-medium rounded-full ${
                       Booking.BookingStatus
-                        ? 'bg-green-100 text-green-700 border border-green-200'
-                        : 'bg-red-100 text-red-600 border border-red-200'
+                        ? 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-500/20'
+                        : 'bg-red-100 dark:bg-red-500/10 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/20'
                     }`}
                   >
                     {Booking.BookingStatus ? 'Confirmed' : 'Cancelled'}
@@ -111,7 +111,7 @@ const MyBookedSession = async () => {
                     <Button
                       size="icon"
                       variant="outline"
-                      className={'cursor-pointer hover:bg-transparent'}
+                      className={'cursor-pointer hover:bg-transparent dark:text-white dark:border-white/20 dark:hover:bg-white/10'}
                     >
                       <Eye size={16} />
                     </Button>

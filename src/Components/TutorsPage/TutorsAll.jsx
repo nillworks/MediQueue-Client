@@ -46,7 +46,7 @@ const TutorsAll = ({ tutorsData }) => {
 
   return (
     <section className="w-full container mx-auto px-4 pt-30 py-8">
-      <div className="mt-6 bg-white p-4 rounded-2xl">
+      <div className="mt-6 bg-white dark:bg-[#111827] border border-transparent dark:border-white/10 p-4 rounded-2xl transition-colors duration-300 shadow-sm">
         <div className="grid md:grid-cols-12 gap-4">
           {/* SEARCH */}
           <div className="md:col-span-6">
@@ -77,7 +77,7 @@ const TutorsAll = ({ tutorsData }) => {
         {/* CARDS */}
         <div className="py-8 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {tutorsData?.length === 0 ? (
-            <p className="col-span-full text-center text-gray-500 py-10">
+            <p className="col-span-full text-center text-gray-500 dark:text-gray-400 py-10">
               No tutors match your search
             </p>
           ) : (

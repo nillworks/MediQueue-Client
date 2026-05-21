@@ -51,7 +51,7 @@ const TutorsCard = ({ tutor }) => {
   };
 
   return (
-    <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden w-full hover:-translate-y-1">
+    <div className="group bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden w-full hover:-translate-y-1">
       {/* Image */}
       <div className="relative h-[190px] overflow-hidden">
         <Image
@@ -62,12 +62,12 @@ const TutorsCard = ({ tutor }) => {
         />
 
         {/* Subject badge */}
-        <span className="absolute top-3 left-3 bg-white/90 backdrop-blur text-blue-600 text-xs px-3 py-1 rounded-full shadow-sm">
+        <span className="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur text-blue-600 dark:text-blue-400 text-xs px-3 py-1 rounded-full shadow-sm">
           {subject}
         </span>
 
         {/* Rating badge */}
-        <span className="absolute top-3 right-3 bg-white/90 backdrop-blur text-gray-800 text-xs px-2 py-1 rounded-full shadow-sm flex items-center gap-1">
+        <span className="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur text-gray-800 dark:text-slate-200 text-xs px-2 py-1 rounded-full shadow-sm flex items-center gap-1">
           <Star size={12} className="text-yellow-500 fill-yellow-500" />
           {rating}
         </span>
@@ -75,52 +75,52 @@ const TutorsCard = ({ tutor }) => {
 
       {/* Content */}
       <div className="p-4">
-        <h2 className="font-semibold text-lg text-gray-900 leading-tight">
+        <h2 className="font-semibold text-lg text-gray-900 dark:text-white leading-tight transition-colors">
           {name}
         </h2>
 
-        <p className="text-gray-500 text-sm mt-1">{university}</p>
+        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{university}</p>
 
         {/* Info */}
-        <div className="mt-4 space-y-2 text-sm text-gray-600">
+        <div className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
           {/* start Date */}
 
           <p className="flex items-center flex-wrap gap-2">
-            <span className="font-medium text-gray-700">
+            <span className="font-medium text-gray-700 dark:text-gray-300">
               Session Start Date:
             </span>
 
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               {formatDate(sessionStartDate) || 'Not set'}
             </span>
           </p>
 
           <p className="flex items-center flex-wrap gap-2">
-            <span className="font-medium text-gray-700">Available Time:</span>
+            <span className="font-medium text-gray-700 dark:text-gray-300">Available Time:</span>
 
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               {schedule?.startTime && schedule?.endTime
                 ? `${fromMinutes(schedule.startTime)} – ${fromMinutes(schedule.endTime)}`
                 : 'Not set'}
             </span>
           </p>
 
-          <p className="text-gray-500 space-x-2">
-            <span className="font-medium text-gray-700">Location:</span>
+          <p className="text-gray-500 dark:text-gray-400 space-x-2">
+            <span className="font-medium text-gray-700 dark:text-gray-300">Location:</span>
             <span>{location}</span>
           </p>
 
-          <p className="text-gray-500">{experience} yrs experience</p>
+          <p className="text-gray-500 dark:text-gray-400">{experience} yrs experience</p>
         </div>
 
         {/* Divider */}
-        <div className="my-4 border-t border-gray-100" />
+        <div className="my-4 border-t border-gray-100 dark:border-slate-700" />
 
         {/* Footer */}
         <div className="flex items-center justify-between">
-          <p className="text-blue-600 font-bold text-lg">
+          <p className="text-blue-600 dark:text-blue-400 font-bold text-lg">
             ${price}
-            <span className="text-xs text-gray-500">/hr</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400">/hr</span>
           </p>
 
           <Link href={`/tutors/${_id}`}>

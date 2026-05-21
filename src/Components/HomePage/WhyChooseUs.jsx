@@ -12,7 +12,7 @@ export default function WhyChooseUs() {
       title: 'Verified Tutors',
       desc: 'Rigorous background checks and credential verification for every educator on our platform.',
       cardClass:
-        'bg-[#f4f7ff] border border-transparent hover:border-blue-500/30 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(37,99,235,0.18)] hover:bg-white',
+        'bg-[#f4f7ff] dark:bg-blue-950/20 border border-transparent hover:border-blue-500/30 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(37,99,235,0.18)] hover:bg-white dark:hover:bg-blue-900/30',
       iconBg: 'bg-blue-100 group-hover:bg-blue-600 group-hover:text-white',
     },
 
@@ -23,7 +23,7 @@ export default function WhyChooseUs() {
       title: 'Smart Booking',
       desc: 'AI-powered scheduling system finds the perfect time slots based on your availability.',
       cardClass:
-        'bg-[#effbfa] border border-transparent hover:border-teal-500/30 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(20,184,166,0.18)] hover:bg-white',
+        'bg-[#effbfa] dark:bg-teal-950/20 border border-transparent hover:border-teal-500/30 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(20,184,166,0.18)] hover:bg-white dark:hover:bg-teal-900/30',
       iconBg: 'bg-teal-100 group-hover:bg-teal-500 group-hover:text-white',
     },
 
@@ -34,7 +34,7 @@ export default function WhyChooseUs() {
       title: 'Flexible Learning',
       desc: 'Choose between online, in-person, or hybrid sessions that fit your learning style.',
       cardClass:
-        'bg-[#fbf3fc] border border-transparent hover:border-purple-500/30 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(168,85,247,0.18)] hover:bg-white',
+        'bg-[#fbf3fc] dark:bg-purple-950/20 border border-transparent hover:border-purple-500/30 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(168,85,247,0.18)] hover:bg-white dark:hover:bg-purple-900/30',
       iconBg: 'bg-purple-100 group-hover:bg-purple-500 group-hover:text-white',
     },
 
@@ -45,21 +45,21 @@ export default function WhyChooseUs() {
       title: 'Secure Sessions',
       desc: 'End-to-end encrypted video calls and secure payment processing for peace of mind.',
       cardClass:
-        'bg-[#edfbf2] border border-transparent hover:border-emerald-500/30 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(16,185,129,0.18)] hover:bg-white',
+        'bg-[#edfbf2] dark:bg-emerald-950/20 border border-transparent hover:border-emerald-500/30 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(16,185,129,0.18)] hover:bg-white dark:hover:bg-emerald-900/30',
       iconBg:
         'bg-emerald-100 group-hover:bg-emerald-500 group-hover:text-white',
     },
   ];
 
   return (
-    <section className="bg-white py-20 px-6 md:px-12 lg:px-20">
+    <section className="bg-white dark:bg-[#0B0F19] py-20 px-6 md:px-12 lg:px-20 transition-colors duration-300">
       <div className="container  mx-auto">
         {/* Section Header */}
         <div className="text-center mb-14">
-          <span className="text-blue-600 text-xs md:text-sm font-bold uppercase tracking-widest block mb-3">
+          <span className="text-blue-600 dark:text-blue-400 text-xs md:text-sm font-bold uppercase tracking-widest block mb-3">
             Our Advantages
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#091833]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#091833] dark:text-white">
             Why Choose MediQueue
           </h2>
         </div>
@@ -75,12 +75,12 @@ export default function WhyChooseUs() {
               <div className="mb-6 flex items-center">{feature.icon}</div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-[#091833] mb-4">
+              <h3 className="text-xl font-bold text-[#091833] dark:text-white mb-4">
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className="text-slate-500 text-sm leading-relaxed">
+              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                 {feature.desc}
               </p>
             </div>

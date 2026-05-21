@@ -4,7 +4,7 @@ const LeftHero = () => {
   return (
     <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
       {/* Badge */}
-      <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 px-4 py-2 rounded-full shadow-sm">
+      <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 px-4 py-2 rounded-full shadow-sm">
         <span className="w-2 h-2 bg-blue-500 rounded-full animate-ping"></span>
 
         <span className="text-xs sm:text-sm font-semibold text-blue-600">
@@ -13,7 +13,7 @@ const LeftHero = () => {
       </div>
 
       {/* Heading */}
-      <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-black leading-[1.05] tracking-[-1px] sm:tracking-[-2px] text-slate-900">
+      <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-black leading-[1.05] tracking-[-1px] sm:tracking-[-2px] text-slate-900 dark:text-white transition-colors">
         Learn From The
         <br />
         <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
@@ -24,7 +24,7 @@ const LeftHero = () => {
       </h1>
 
       {/* Description */}
-      <p className="mt-5 text-slate-600 text-base sm:text-lg leading-7 sm:leading-8 max-w-xl mx-auto lg:mx-0">
+      <p className="mt-5 text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-7 sm:leading-8 max-w-xl mx-auto lg:mx-0">
         Connect with verified expert tutors for personalized learning. Book
         sessions, manage schedules, and achieve your academic goals with
         confidence.
@@ -44,7 +44,7 @@ const LeftHero = () => {
         </Link>
 
         <Link href={'/tutors'}>
-          <button className="w-full cursor-pointer sm:w-auto px-7 py-4 rounded-2xl bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800 font-semibold shadow-sm transition-all duration-300 hover:-translate-y-1">
+          <button className="w-full cursor-pointer sm:w-auto px-7 py-4 rounded-2xl bg-white dark:bg-white border border-slate-200 dark:border-transparent hover:border-slate-300 hover:bg-slate-50 dark:hover:bg-slate-200 text-slate-800 dark:text-black font-semibold shadow-sm dark:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:-translate-y-1">
             Book Session
           </button>
         </Link>
@@ -57,7 +57,7 @@ const LeftHero = () => {
           {['A', 'B', 'C', 'D'].map((item, i) => (
             <div
               key={i}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-white bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs sm:text-sm font-bold shadow-md"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-white dark:border-[#0B0F19] bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs sm:text-sm font-bold shadow-md"
             >
               {item}
             </div>
@@ -77,7 +77,7 @@ const LeftHero = () => {
               </svg>
             ))}
 
-            <span className="ml-1 text-sm font-bold text-slate-900">4.9</span>
+            <span className="ml-1 text-sm font-bold text-slate-900 dark:text-white">4.9</span>
           </div>
 
           <p className="text-sm text-slate-500 mt-1">From 2,000+ reviews</p>

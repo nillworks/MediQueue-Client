@@ -19,7 +19,7 @@ const SearchTutors = ({ defaultValue = '', onSearch }) => {
       <input
         value={value}
         onChange={e => setValue(e.target.value)}
-        className="border p-3 w-full rounded-l-lg"
+        className="border border-slate-200 dark:border-slate-700 p-3 w-full rounded-l-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white outline-none transition-colors duration-300"
         placeholder="Search..."
       />
 

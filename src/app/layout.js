@@ -3,6 +3,7 @@ import './globals.css';
 import NavigationMenu from '@/shared/NavigationMenu';
 import Footer from '@/shared/Footer';
 import { Toast } from '@heroui/react';
+import HeroUiThemeProvider from '@/Components/Provider/HeroUiThemeProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,12 +35,15 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
-        <Toast.Provider placement="top" />
-        <NavigationMenu />
-        {children}
-        <Footer />
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <HeroUiThemeProvider>
+          <Toast.Provider placement="top" />
+          <NavigationMenu />
+          {children}
+          <Footer />
+        </HeroUiThemeProvider>
       </body>
     </html>
   );

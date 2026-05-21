@@ -75,21 +75,21 @@ const AddTutorForm = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-12 px-4 bg-gray-50">
+    <div className="min-h-screen pt-24 pb-12 px-4 bg-gray-50 dark:bg-slate-950 transition-colors duration-300">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-gray-800">Add New Tutor</h1>
-          <p className="text-gray-500 mt-2">
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white transition-colors">Add New Tutor</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2">
             Fill all required fields carefully
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg p-6">
+        <div className="bg-white dark:bg-slate-900 border border-transparent dark:border-slate-800 rounded-2xl shadow-lg p-6 transition-colors duration-300">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Tutor Name + Subject */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Tutor Name <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -97,18 +97,18 @@ const AddTutorForm = () => {
                   required
                   type="text"
                   placeholder="Enter tutor name"
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Subject <span className="text-red-600">*</span>
                 </label>
                 <select
                   name="subject"
                   required
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 >
                   <option value="">Select Subject</option>
                   <option>Mathematics</option>
@@ -122,7 +122,7 @@ const AddTutorForm = () => {
 
             {/* Photo URL */}
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                 Photo URL <span className="text-red-600">*</span>
               </label>
               <input
@@ -131,12 +131,12 @@ const AddTutorForm = () => {
                 type="text"
                 placeholder="Paste image link"
                 pattern="https?://.*"
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
               />
             </div>
             {/* bio Details */}
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                 Bio <span className="text-red-600">*</span>
               </label>
               <input
@@ -144,14 +144,14 @@ const AddTutorForm = () => {
                 required
                 type="text"
                 placeholder="Write bio details"
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
               />
             </div>
 
             {/* Institution + Experience */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Institution <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -159,12 +159,12 @@ const AddTutorForm = () => {
                   required
                   type="text"
                   placeholder="University / College"
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Experience (Years) <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -172,7 +172,7 @@ const AddTutorForm = () => {
                   required
                   type="number"
                   placeholder="e.g. 5"
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 />
               </div>
             </div>
@@ -180,7 +180,7 @@ const AddTutorForm = () => {
             {/* Fee + Slots */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Hourly Fee <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -188,12 +188,12 @@ const AddTutorForm = () => {
                   required
                   type="number"
                   placeholder="$50"
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Total Slots <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -201,7 +201,7 @@ const AddTutorForm = () => {
                   required
                   type="number"
                   placeholder="10"
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 />
               </div>
             </div>
@@ -209,7 +209,7 @@ const AddTutorForm = () => {
             {/* Location + Mode */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Location <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -217,18 +217,18 @@ const AddTutorForm = () => {
                   required
                   type="text"
                   placeholder="City / Area"
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Teaching Mode <span className="text-red-600">*</span>
                 </label>
                 <select
                   name="mode"
                   required
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 >
                   <option value="">Select Mode</option>
                   <option>Online</option>
@@ -240,7 +240,7 @@ const AddTutorForm = () => {
 
             {/* Available Days */}
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">
                 Available Days <span className="text-red-600">*</span>
               </label>
 
@@ -248,7 +248,7 @@ const AddTutorForm = () => {
                 {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
                   <label
                     key={day}
-                    className="px-3 py-1 border rounded-lg cursor-pointer hover:bg-blue-100"
+                    className="px-3 py-1 border border-slate-300 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-blue-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-colors duration-300"
                   >
                     <input
                       type="checkbox"
@@ -265,7 +265,7 @@ const AddTutorForm = () => {
             {/* Time Slot */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Start Time <span className="text-red-600">*</span>
                 </label>
                 <p className="text-xs text-gray-400 mb-1">
@@ -275,12 +275,12 @@ const AddTutorForm = () => {
                   name="startTime"
                   type="time"
                   required
-                  className="w-full px-3 py-2 border rounded-lg"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg transition-colors duration-300"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   End Time <span className="text-red-600">*</span>
                 </label>
                 <p className="text-xs text-gray-400 mb-1">
@@ -290,7 +290,7 @@ const AddTutorForm = () => {
                   name="endTime"
                   type="time"
                   required
-                  className="w-full px-3 py-2 border rounded-lg"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg transition-colors duration-300"
                 />
               </div>
             </div>
@@ -298,25 +298,25 @@ const AddTutorForm = () => {
             {/* Session Date */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Session Start Date <span className="text-red-600">*</span>
                 </label>
                 <input
                   name="sessionStartDate"
                   required
                   type="date"
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
                   Session End Date <span className="text-red-600">*</span>
                 </label>
                 <input
                   name="sessionEndDate"
                   required
                   type="date"
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
                 />
               </div>
             </div>

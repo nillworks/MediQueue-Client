@@ -53,7 +53,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-20 px-4 bg-[#fcfdff] overflow-hidden">
+    <section className="py-20 px-4 bg-[#fcfdff] dark:bg-[#0B0F19] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
@@ -61,11 +61,11 @@ const Testimonials = () => {
             Testimonials
           </span>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#091833] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#091833] dark:text-white leading-tight transition-colors">
             Student Success Stories
           </h2>
 
-          <p className="max-w-2xl mx-auto mt-5 text-slate-500 leading-7">
+          <p className="max-w-2xl mx-auto mt-5 text-slate-500 dark:text-slate-400 leading-7">
             Discover how MediQueue helps students achieve academic excellence
             with trusted tutors and flexible learning.
           </p>
@@ -103,7 +103,7 @@ const Testimonials = () => {
         >
           {testimonials.map(item => (
             <SwiperSlide key={item.id}>
-              <div className="group bg-white border border-slate-100 rounded-[30px] p-8 h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_25px_60px_-15px_rgba(37,99,235,0.12)] hover:border-blue-100">
+              <div className="group bg-white dark:bg-[#111827] border border-slate-100 dark:border-white/10 rounded-[30px] p-8 h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_25px_60px_-15px_rgba(37,99,235,0.12)] hover:border-blue-100 dark:hover:border-blue-500/50">
                 {/* Quote Icon */}
                 <div className="w-8 h-8 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 transition duration-500 group-hover:bg-blue-600">
                   <FaQuoteLeft className="text-blue-600 text-lg group-hover:text-white transition duration-500" />
@@ -117,7 +117,7 @@ const Testimonials = () => {
                 </div>
 
                 {/* Text */}
-                <p className="text-slate-600 leading-8 text-sm mb-8">
+                <p className="text-slate-600 dark:text-slate-400 leading-8 text-sm mb-8">
                   {item.text}
                 </p>
 
@@ -134,7 +134,7 @@ const Testimonials = () => {
                   </div>
 
                   <div>
-                    <h4 className="font-bold text-[#091833] text-base">
+                    <h4 className="font-bold text-[#091833] dark:text-slate-100 text-base">
                       {item.name}
                     </h4>
 

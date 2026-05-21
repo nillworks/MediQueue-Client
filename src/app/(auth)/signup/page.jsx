@@ -100,7 +100,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="flex pt-35 pb-10 items-center justify-center px-4 bg-gray-50 dark:bg-black">
+    <div className="flex pt-35 pb-10 items-center justify-center px-4 bg-gray-50 dark:bg-[#0B0F19] transition-colors duration-300">
       <div className="w-full max-w-5xl grid lg:grid-cols-2 bg-white dark:bg-[#0B0F19] rounded-3xl shadow-xl overflow-hidden">
         {/* LEFT SIDE - MODERN DESIGN */}
         <div className="hidden lg:flex flex-col justify-between p-10 bg-gradient-to-br from-purple-700 via-indigo-600 to-blue-600 text-white relative overflow-hidden">
@@ -145,7 +145,7 @@ const SignUpPage = () => {
             <h2 className="text-2xl font-bold mb-2 dark:text-white">
               Create Account
             </h2>
-            <p className="text-gray-500 mb-6">
+            <p className="text-gray-500 dark:text-gray-400 mb-6">
               Fill your details to get started
             </p>
 
@@ -159,7 +159,7 @@ const SignUpPage = () => {
                 <Input
                   name="name"
                   placeholder="Your Full Name"
-                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
                              ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.name && (
@@ -177,7 +177,7 @@ const SignUpPage = () => {
                   name="email"
                   type="email"
                   placeholder="Enter your valid email address"
-                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
                              ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.email && (
@@ -195,7 +195,7 @@ const SignUpPage = () => {
                   name="photo"
                   pattern="https?://.*"
                   placeholder="Valid Photo URL"
-                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
                              ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.photo && (
@@ -214,7 +214,7 @@ const SignUpPage = () => {
                   name="password"
                   type={showPass ? 'text' : 'password'}
                   placeholder="Password"
-                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
                              ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 
@@ -246,7 +246,7 @@ const SignUpPage = () => {
                   name="confirmPassword"
                   type={showConfirm ? 'text' : 'password'}
                   placeholder="Confirm Password"
-                  className={`w-full px-4 py-3 border border-[#ddd] rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
                              ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 
@@ -281,15 +281,15 @@ const SignUpPage = () => {
             {/* GOOGLE */}
             <button
               onClick={handleGoogleSignIn}
-              className="w-full mt-4 border py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-50"
+              className="w-full mt-4 border py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#111827] dark:border-white/10 dark:text-white"
             >
               <FcGoogle />
               Continue with Google
             </button>
 
-            <p className="text-center mt-6 text-sm">
+            <p className="text-center mt-6 text-sm dark:text-gray-300">
               Already have an account?
-              <Link href="/signin" className="text-blue-600 font-medium">
+              <Link href="/signin" className="text-blue-600 dark:text-blue-400 font-medium ml-1">
                 Login
               </Link>
             </p>
