@@ -74,7 +74,7 @@ const NavigationMenu = () => {
           </div>
 
           {/* center */}
-          <div className="hidden items-center gap-5 lg:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             {navLinks.map(link => (
               <ActiveLink key={link.href} href={link.href}>
                 {link.name}

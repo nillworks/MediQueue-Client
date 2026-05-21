@@ -25,7 +25,7 @@ export async function MyTutorsPage() {
   const tutors = data?.tutorsList;
 
   return (
-    <div className="pt-30 container mx-auto pb-10">
+    <div className="pt-30 container mx-auto px-4 pb-10">
       <div className=" flex flex-col pb-8">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800">
           My Tutors

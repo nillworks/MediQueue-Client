@@ -24,7 +24,7 @@ const MyBookedSession = async () => {
 
   return (
     <>
-      <div className=" flex flex-col pb-8">
+      <div className=" flex flex-col pb-8 px-3">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800">
           My Booked Sessions
         </h2>
@@ -34,7 +34,7 @@ const MyBookedSession = async () => {
         </p>
       </div>
 
-      <Table className={'border border-[#dddd] rounded-lg'}>
+      <Table className={'border border-[#dddd] mx-5 rounded-lg'}>
         <TableHeader className={'hover:bg-transparent'}>
           <TableRow className={'hover:bg-transparent'}>
             <TableHead>Name</TableHead>

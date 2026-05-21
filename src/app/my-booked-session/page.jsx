@@ -8,7 +8,7 @@ export const metadata = {
 
 const page = () => {
   return (
-    <section className="pt-30 container mx-auto pb-10">
+    <section className="pt-30 container mx-auto  pb-10">
       <MyBookedSession />
     </section>
   );
