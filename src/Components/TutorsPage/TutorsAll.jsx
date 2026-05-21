@@ -12,12 +12,10 @@ const TutorsAll = ({ tutorsData }) => {
   const updateQuery = (key, value) => {
     const current = new URLSearchParams(params.toString());
 
-    // 👉 DATE দিলে search remove
     if (key === 'startDate' || key === 'endDate') {
       current.delete('search');
     }
 
-    // 👉 SEARCH দিলে date remove
     if (key === 'search') {
       current.delete('startDate');
       current.delete('endDate');
@@ -47,9 +45,9 @@ const TutorsAll = ({ tutorsData }) => {
   return (
     <section className="w-full container mx-auto px-4 pt-30 py-8">
       <div className="mt-6 bg-white dark:bg-[#111827] border border-transparent dark:border-white/10 p-4 rounded-2xl transition-colors duration-300 shadow-sm">
-        <div className="grid md:grid-cols-12 gap-4">
+        <div className="flex flex-col gap-3 lg:flex-row lg:justify-center lg:gap-8">
           {/* SEARCH */}
-          <div className="md:col-span-6">
+          <div className="">
             <SearchTutors
               defaultValue={searchValue}
               onSearch={value => updateQuery('search', value)}
@@ -57,20 +55,24 @@ const TutorsAll = ({ tutorsData }) => {
           </div>
 
           {/* DATE */}
-          <div className="md:col-span-6">
+          <div className="">
             <DateFilter
+              resetDates={resetDates}
               startDate={startDate}
               endDate={endDate}
               setStartDate={val => updateQuery('startDate', val)}
               setEndDate={val => updateQuery('endDate', val)}
             />
 
-            <button
+            {/* <button
               onClick={resetDates}
-              className="mt-2 text-xs bg-gray-600 text-white px-3 py-1 rounded"
+              className="mt-2 text-xs flex flex-col items-center justify-center mx-auto px-4 py-1.5 rounded-full 
+              bg-gray-200 text-gray-800 font-medium 
+              hover:bg-gray-300 hover:text-black 
+               transition-all duration-200 shadow-sm hover:shadow cursor-pointer"
             >
               Reset Dates
-            </button>
+            </button> */}
           </div>
         </div>
 

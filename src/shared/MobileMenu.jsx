@@ -48,7 +48,9 @@ const MobileMenu = ({ navLinks, user }) => {
       >
         {/* header */}
         <div className="mb-5 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">Menu</h2>
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+            Menu
+          </h2>
 
           <button
             onClick={() => setOpen(false)}
@@ -69,7 +71,9 @@ const MobileMenu = ({ navLinks, user }) => {
               className="h-10 w-10 rounded-full object-cover"
             />
             <div>
-              <h4 className="font-semibold text-slate-800 dark:text-slate-100">{user?.name}</h4>
+              <h4 className="font-semibold text-slate-800 dark:text-slate-100">
+                {user?.name}
+              </h4>
               <p className="text-sm text-slate-500">Logged In</p>
             </div>
           </div>
@@ -94,12 +98,24 @@ const MobileMenu = ({ navLinks, user }) => {
               Logout
             </button>
           ) : (
-            <div
-              onClick={() => setOpen(false)}
-              className="rounded-xl bg-blue-600 dark:bg-blue-500 py-2 text-center font-semibold text-white hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
-            >
-              <Link href="/signin">Login</Link> /{' '}
-              <Link href="/signup">Register</Link>
+            <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/signin"
+                  className="rounded-full bg-blue-200 px-7 py-2.5 font-semibold text-blue-900 shadow-sm
+                    hover:bg-blue-300 hover:shadow-md transition-all duration-200"
+                >
+                  Login
+                </Link>
+
+                <Link
+                  href="/signup"
+                  className="rounded-full bg-gray-900 px-7 py-2.5 font-semibold text-white shadow-sm
+                    hover:bg-black hover:shadow-md transition-all duration-200"
+                >
+                  Register
+                </Link>
+              </div>
             </div>
           )}
         </div>

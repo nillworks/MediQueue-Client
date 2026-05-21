@@ -121,4 +121,76 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* ─── HeroUI-specific tokens for dark mode ─── */
+  --surface: #1E293B;
+  --surface-foreground: #F8FAFC;
+  --overlay: #1E293B;
+  --overlay-foreground: #F8FAFC;
 }
+
+/* ─── Toast: Fix text colors for BOTH light & dark ─── */
+[data-slot="toast"] .toast__title,
+[data-slot="toast-title"] {
+  color: var(--overlay-foreground) !important;
+}
+
+[data-slot="toast"] .toast__description,
+[data-slot="toast-description"] {
+  color: #94A3B8 !important;
+}
+
+.dark [data-slot="toast"],
+.dark [data-slot="toast-region"] [data-slot="toast"] {
+  background-color: #1E293B !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark [data-slot="toast-title"] {
+  color: #F8FAFC !important;
+}
+
+.dark [data-slot="toast-description"] {
+  color: #94A3B8 !important;
+}
+
+.dark [data-slot="toast-close"],
+.dark [data-slot="toast"] button {
+  color: #94A3B8 !important;
+}
+
+/* Light mode toast description fix */
+:root [data-slot="toast-description"],
+.light [data-slot="toast-description"] {
+  color: #64748B !important;
+}
+
+/* ─── Dark Mode: HeroUI Modal Surface/Form Overrides ─── */
+.dark [data-slot="modal-dialog"] [data-slot="surface"] {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.dark [data-slot="modal-dialog"] input,
+.dark [data-slot="modal-dialog"] [data-slot="input"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #F8FAFC !important;
+}
+
+.dark [data-slot="modal-dialog"] input::placeholder,
+.dark [data-slot="modal-dialog"] [data-slot="input"]::placeholder {
+  color: #64748B !important;
+}
+
+.dark [data-slot="modal-dialog"] label,
+.dark [data-slot="modal-dialog"] [data-slot="label"] {
+  color: #E2E8F0 !important;
+}
+
+/* Date input icon color fix for dark mode */
+.dark [data-slot="modal-dialog"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+

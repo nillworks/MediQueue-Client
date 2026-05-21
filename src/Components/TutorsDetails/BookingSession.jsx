@@ -127,7 +127,7 @@ const BookingSession = ({ singleData }) => {
             <Modal.CloseTrigger className="text-blue-400" />
 
             {/* HEADER */}
-            <Modal.Header className="border-b border-gray-100  p-6">
+            <Modal.Header className="border-b border-gray-100 dark:border-white/10 p-6">
               <Modal.Heading className="text-2xl font-bold text-gray-900 dark:text-white mt-3">
                 Book Session
               </Modal.Heading>
@@ -165,7 +165,7 @@ const BookingSession = ({ singleData }) => {
 
             {/* BODY */}
             <Modal.Body className="p-6">
-              <Surface variant="default">
+              <Surface variant="default" className="!bg-transparent">
                 <form onSubmit={submitBooing} className="flex flex-col gap-4">
                   {/* Tutor Name */}
                   <TextField
@@ -174,10 +174,10 @@ const BookingSession = ({ singleData }) => {
                     name="name"
                     type="text"
                   >
-                    <Label>Tutor Name</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Tutor Name</Label>
                     <Input
                       placeholder="Enter your full  name"
-                      className="rounded-xl"
+                      className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
                     />
                   </TextField>
                   {/* studentName */}
@@ -187,10 +187,10 @@ const BookingSession = ({ singleData }) => {
                     name="studentName"
                     type="text"
                   >
-                    <Label>Student Name</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Student Name</Label>
                     <Input
                       placeholder="Enter your full  name"
-                      className="rounded-xl"
+                      className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
                     />
                   </TextField>
                   {/* email */}
@@ -200,29 +200,29 @@ const BookingSession = ({ singleData }) => {
                     name="email"
                     type="email"
                   >
-                    <Label>Email</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Email</Label>
                     <Input
                       placeholder="Enter your email"
-                      className="rounded-xl"
+                      className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
                     />
                   </TextField>
                   {/* Phone */}
                   <TextField className="w-full" name="phone" type="tel">
-                    <Label>Phone</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Phone</Label>
                     <Input
                       required
                       placeholder="Enter your phone number"
-                      className="rounded-xl"
+                      className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
                     />
                   </TextField>
                   {/* Preferred Date */}
                   <TextField className="w-full" name="PreferredDate">
-                    <Label>Preferred Date</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Preferred Date</Label>
                     <Input
                       type="date"
                       required
                       placeholder="Enter your company name"
-                      className="rounded-xl"
+                      className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
                     />
                   </TextField>
 

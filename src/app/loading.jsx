@@ -2,25 +2,33 @@
 
 export default function LoadingScreen() {
   return (
-    <div className="fixed inset-0 z-[100] bg-white/80 dark:bg-[#0B0F19]/90 backdrop-blur-md flex flex-col items-center justify-center transition-colors duration-300">
-      <div className="relative flex flex-col items-center justify-center">
-        {/* Outer pulsing rings */}
-        <div className="absolute w-24 h-24 border-4 border-blue-500/20 dark:border-blue-400/20 rounded-full animate-ping"></div>
-        <div className="absolute w-16 h-16 border-4 border-blue-500/40 dark:border-blue-400/40 rounded-full animate-pulse"></div>
-        
-        {/* Core spinner */}
-        <div className="relative w-12 h-12">
-          <div className="absolute inset-0 rounded-full border-4 border-blue-100 dark:border-slate-800"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-blue-600 dark:border-blue-500 border-t-transparent animate-spin"></div>
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center 
+    bg-white/70 dark:bg-[#0B0F19]/80 backdrop-blur-xl transition-all duration-300"
+    >
+      <div className="flex flex-col items-center gap-6">
+        {/* Gradient Spinner */}
+        <div className="relative w-14 h-14">
+          <div
+            className="absolute inset-0 rounded-full border-4 border-transparent 
+          border-t-blue-500 border-r-cyan-400 animate-spin"
+          ></div>
+
+          <div className="absolute inset-2 rounded-full bg-white dark:bg-[#0B0F19]"></div>
         </div>
 
         {/* Text */}
-        <div className="mt-8 flex flex-col items-center gap-1">
-          <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent animate-pulse">
+        <div className="text-center space-y-1">
+          <h2
+            className="text-xl font-semibold 
+          bg-gradient-to-r from-blue-500 to-cyan-400 
+          bg-clip-text text-transparent"
+          >
             MediQueue
-          </h3>
-          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 tracking-widest uppercase">
-            Loading
+          </h2>
+
+          <p className="text-xs tracking-[0.3em] text-gray-500 dark:text-gray-400 animate-pulse">
+            LOADING...
           </p>
         </div>
       </div>
