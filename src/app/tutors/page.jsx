@@ -1,15 +1,15 @@
 import TutorsAll from '@/Components/TutorsPage/TutorsAll';
+import getAllTutorsData from '@/lib/getAllTutorsData';
 
-export const metadata = {
-  title: 'All Tutors | MediQueue',
-  description:
-    'Browse all available tutors on MediQueue and find the best tutor for your needs.',
-};
+const page = async ({ searchParams }) => {
+  const { search } = await searchParams;
 
-const page = () => {
+  const data = await getAllTutorsData(search);
+  const tutorsData = data.tutors;
+
   return (
     <>
-      <TutorsAll />
+      <TutorsAll tutorsData={tutorsData} searchParams={search} />
     </>
   );
 };

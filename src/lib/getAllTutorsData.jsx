@@ -1,5 +1,7 @@
-const getAllTutorsData = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tutors`);
+const getAllTutorsData = async (search = '') => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/tutors?search=${search}`,
+  );
   return res.json();
 };
 
