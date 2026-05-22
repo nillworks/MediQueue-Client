@@ -65,11 +65,9 @@ const BookingSession = ({ singleData }) => {
     });
 
     const res = await req.json();
-    if (!req.ok) {
-      throw new Error('Network response was not ok');
-    }
+    console.log(res);
 
-    if (res.acknowledged === true) {
+    if (res.acknowledged) {
       setLoading(false);
 
       document.querySelector('[data-slot="modal-close-trigger"]')?.click();
@@ -79,7 +77,19 @@ const BookingSession = ({ singleData }) => {
           'Your tutoring session has been successfully booked. We will contact you soon.',
         variant: 'success',
       });
+    } else if (res.BookedAlready === true) {
+      setLoading(false);
+      document.querySelector('[data-slot="modal-close-trigger"]')?.click();
+      router.refresh();
+
+      toast.danger('Already Booked', {
+        description:
+          'You have already booked this tutor. Please cancel your previous booking to book again.',
+      });
     } else {
+      setLoading(false);
+      document.querySelector('[data-slot="modal-close-trigger"]')?.click();
+      router.refresh();
       toast.danger('Booking Failed', {
         description: 'We could not process your booking. Please try again.',
         variant: 'danger',
@@ -174,8 +184,11 @@ const BookingSession = ({ singleData }) => {
                     name="name"
                     type="text"
                   >
-                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Tutor Name</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">
+                      Tutor Name
+                    </Label>
                     <Input
+                      readOnly
                       placeholder="Enter your full  name"
                       className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
                     />
@@ -187,7 +200,9 @@ const BookingSession = ({ singleData }) => {
                     name="studentName"
                     type="text"
                   >
-                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Student Name</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">
+                      Student Name
+                    </Label>
                     <Input
                       placeholder="Enter your full  name"
                       className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
@@ -200,7 +215,9 @@ const BookingSession = ({ singleData }) => {
                     name="email"
                     type="email"
                   >
-                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Email</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">
+                      Email
+                    </Label>
                     <Input
                       placeholder="Enter your email"
                       className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
@@ -208,16 +225,20 @@ const BookingSession = ({ singleData }) => {
                   </TextField>
                   {/* Phone */}
                   <TextField className="w-full" name="phone" type="tel">
-                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Phone</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">
+                      Phone
+                    </Label>
                     <Input
                       required
                       placeholder="Enter your phone number"
-                      className="rounded-xl dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
+                      className="rounded-xl placeholder:text-gray-500 text-black dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-gray-500"
                     />
                   </TextField>
                   {/* Preferred Date */}
                   <TextField className="w-full" name="PreferredDate">
-                    <Label className="font-semibold text-gray-800 dark:text-gray-200">Preferred Date</Label>
+                    <Label className="font-semibold text-gray-800 dark:text-gray-200">
+                      Preferred Date
+                    </Label>
                     <Input
                       type="date"
                       required

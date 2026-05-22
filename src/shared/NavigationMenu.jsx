@@ -25,6 +25,7 @@ const NavigationMenu = () => {
       variant: 'success',
     });
     router.push('/signin');
+    router.refresh();
   };
 
   // outside click close

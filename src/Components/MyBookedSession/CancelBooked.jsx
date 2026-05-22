@@ -23,7 +23,8 @@ const CancelBooked = ({ BookingData }) => {
     );
 
     const res = await req.json();
-    if (res.modifiedCount > 0) {
+    console.log(res);
+    if (res.message === 'Booking cancelled successfully') {
       router.refresh();
       toast.success('Booking Cancelled Successfully', {
         description: 'Your booking has been cancelled successfully.',
@@ -70,7 +71,9 @@ const CancelBooked = ({ BookingData }) => {
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
           <AlertDialog.Dialog className="sm:max-w-[400px]">
-            <AlertDialog.CloseTrigger />
+            <AlertDialog.CloseTrigger
+              className={'text-blue-600 dark:text-white'}
+            />
 
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
@@ -78,7 +81,7 @@ const CancelBooked = ({ BookingData }) => {
             </AlertDialog.Header>
 
             <AlertDialog.Body>
-              <p>
+              <p className="text-gray-800 dark:text-white">
                 This will cancel booking for{' '}
                 <strong>{BookingData?.name}</strong>.
               </p>

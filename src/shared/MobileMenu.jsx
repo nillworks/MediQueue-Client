@@ -7,9 +7,11 @@ import ActiveLink from './ActiveLink';
 import Image from 'next/image';
 import { signOut } from '@/lib/auth-client';
 import { toast } from '@heroui/react';
+import { useRouter } from 'next/navigation';
 
 const MobileMenu = ({ navLinks, user }) => {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   const handleSignOut = () => {
     signOut();
     toast.success('Signed out successfully', {
@@ -33,7 +35,7 @@ const MobileMenu = ({ navLinks, user }) => {
       {/* overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 z-[9998] bg-black/40 backdrop-blur-sm transition-all duration-300 ${
+        className={`fixed inset-0 z-[9998] transition-all duration-300 ${
           open ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
       />
