@@ -17,8 +17,8 @@ providing a **single unified platform** where students can search, filter, and
 book sessions with verified tutors — while tutors can manage their profiles,
 availability slots, and track bookings in real time.
 
-🔗 **Live Site:** [ZenoTutor on Vercel](https://ZenoTutor-chi.vercel.app/) 🔗
-**Backend API:** [API on Vercel](https://ZenoTutor-server-murex.vercel.app/)
+🔗 **Live Site:** [ZenoTutor on Vercel](https://zenotutor.vercel.app/) 🔗
+**Backend API:** [API on Vercel](https://zenotutor-server.vercel.app/)
 
 ---
 
