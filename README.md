@@ -6,14 +6,19 @@
   <img src="https://img.shields.io/badge/Node.js-20+-339933?style=for-the-badge&logo=node.js&logoColor=white" />
 </p>
 
-# 🏥 MediQueue — Tutor Booking Platform
+# 🏥 ZenoTutor — Tutor Booking Platform
 
-> **A full-stack MERN application that connects students with professional tutors through a seamless, real-time booking experience — built with Next.js 16, Express.js 5, MongoDB, and JWT-based authentication.**
+> **A full-stack MERN application that connects students with professional
+> tutors through a seamless, real-time booking experience — built with Next.js
+> 16, Express.js 5, MongoDB, and JWT-based authentication.**
 
-MediQueue solves the problem of scattered, unorganized tutor discovery by providing a **single unified platform** where students can search, filter, and book sessions with verified tutors — while tutors can manage their profiles, availability slots, and track bookings in real time.
+ZenoTutor solves the problem of scattered, unorganized tutor discovery by
+providing a **single unified platform** where students can search, filter, and
+book sessions with verified tutors — while tutors can manage their profiles,
+availability slots, and track bookings in real time.
 
-🔗 **Live Site:** [MediQueue on Vercel](https://mediqueue-chi.vercel.app/)
-🔗 **Backend API:** [API on Vercel](https://mediqueue-server-murex.vercel.app/)
+🔗 **Live Site:** [ZenoTutor on Vercel](https://ZenoTutor-chi.vercel.app/) 🔗
+**Backend API:** [API on Vercel](https://ZenoTutor-server-murex.vercel.app/)
 
 ---
 
@@ -36,52 +41,56 @@ MediQueue solves the problem of scattered, unorganized tutor discovery by provid
 ## ✨ Features
 
 ### 👨‍🎓 Student Features
-| Feature | Description |
-|---|---|
-| 🔍 **Smart Search** | Search tutors by name with real-time regex matching |
-| 📅 **Date Range Filter** | Filter tutors by session start date using `startDate` and `endDate` |
-| 📝 **Session Booking** | Book sessions via a modal form with auto-filled user data |
-| 📊 **Booking Dashboard** | View all bookings in a data table with status tracking |
-| ❌ **Cancel Booking** | Cancel any active booking with one click (status updates to "Cancelled") |
-| 🔒 **Secure Auth** | Email/password + Google OAuth sign-in via Better Auth |
-| 🌙 **Dark Mode** | Full dark/light theme toggle with persistent state |
+
+| Feature                  | Description                                                              |
+| ------------------------ | ------------------------------------------------------------------------ |
+| 🔍 **Smart Search**      | Search tutors by name with real-time regex matching                      |
+| 📅 **Date Range Filter** | Filter tutors by session start date using `startDate` and `endDate`      |
+| 📝 **Session Booking**   | Book sessions via a modal form with auto-filled user data                |
+| 📊 **Booking Dashboard** | View all bookings in a data table with status tracking                   |
+| ❌ **Cancel Booking**    | Cancel any active booking with one click (status updates to "Cancelled") |
+| 🔒 **Secure Auth**       | Email/password + Google OAuth sign-in via Better Auth                    |
+| 🌙 **Dark Mode**         | Full dark/light theme toggle with persistent state                       |
 
 ### 👩‍🏫 Tutor Features
-| Feature | Description |
-|---|---|
+
+| Feature                  | Description                                                               |
+| ------------------------ | ------------------------------------------------------------------------- |
 | ➕ **Add Tutor Profile** | Create a complete tutor profile with subject, pricing, schedule, location |
-| ✏️ **Edit Tutor** | Update tutor details via an inline edit modal |
-| 🗑️ **Delete Tutor** | Remove a tutor listing permanently |
-| 📋 **My Tutors List** | View and manage all created tutor profiles in a table |
-| 🎰 **Slot Management** | Available slots auto-decrease when a student books a session |
+| ✏️ **Edit Tutor**        | Update tutor details via an inline edit modal                             |
+| 🗑️ **Delete Tutor**      | Remove a tutor listing permanently                                        |
+| 📋 **My Tutors List**    | View and manage all created tutor profiles in a table                     |
+| 🎰 **Slot Management**   | Available slots auto-decrease when a student books a session              |
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-| Technology | Purpose |
-|---|---|
+
+| Technology                  | Purpose                                                         |
+| --------------------------- | --------------------------------------------------------------- |
 | **Next.js 16** (App Router) | React framework with SSR, file-based routing, server components |
-| **React 19** | UI rendering with latest concurrent features |
-| **Tailwind CSS v4** | Utility-first CSS with `@theme` tokens |
-| **HeroUI (React)** | Premium UI component library (Modals, Toasts, Forms) |
-| **shadcn/ui** | Accessible Table, Button components via Radix primitives |
-| **Better Auth** | Full-stack authentication (JWT, Google OAuth, sessions) |
-| **next-themes** | Dark/Light mode with `class` strategy |
-| **Swiper.js** | Touch-friendly hero slider and carousels |
-| **Lucide React** | Consistent SVG icon system |
+| **React 19**                | UI rendering with latest concurrent features                    |
+| **Tailwind CSS v4**         | Utility-first CSS with `@theme` tokens                          |
+| **HeroUI (React)**          | Premium UI component library (Modals, Toasts, Forms)            |
+| **shadcn/ui**               | Accessible Table, Button components via Radix primitives        |
+| **Better Auth**             | Full-stack authentication (JWT, Google OAuth, sessions)         |
+| **next-themes**             | Dark/Light mode with `class` strategy                           |
+| **Swiper.js**               | Touch-friendly hero slider and carousels                        |
+| **Lucide React**            | Consistent SVG icon system                                      |
 
 ### Backend
-| Technology | Purpose |
-|---|---|
-| **Node.js** | JavaScript runtime |
-| **Express.js 5** | REST API framework |
-| **MongoDB 7** (Atlas) | NoSQL document database |
-| **jose-cjs** | JWT verification using JWKS endpoint |
-| **CORS** | Cross-origin request handling |
-| **dotenv** | Environment variable management |
-| **Vercel** | Serverless deployment |
+
+| Technology            | Purpose                              |
+| --------------------- | ------------------------------------ |
+| **Node.js**           | JavaScript runtime                   |
+| **Express.js 5**      | REST API framework                   |
+| **MongoDB 7** (Atlas) | NoSQL document database              |
+| **jose-cjs**          | JWT verification using JWKS endpoint |
+| **CORS**              | Cross-origin request handling        |
+| **dotenv**            | Environment variable management      |
+| **Vercel**            | Serverless deployment                |
 
 ---
 
@@ -89,7 +98,8 @@ MediQueue solves the problem of scattered, unorganized tutor discovery by provid
 
 ### Pages & Components Built
 
-The frontend follows a **modular component architecture** inside `src/Components/`, with each feature organized in its own directory:
+The frontend follows a **modular component architecture** inside
+`src/Components/`, with each feature organized in its own directory:
 
 ```
 📄 Home Page         → Hero slider, Top Tutors, Why Choose Us, Testimonials
@@ -107,11 +117,15 @@ The frontend follows a **modular component architecture** inside `src/Components
 
 The application is **fully responsive** across all breakpoints:
 
-- **Mobile** (`< 640px`) — Hamburger menu, single-column card grid, stacked filters
-- **Tablet** (`640px – 1024px`) — 3-column tutor grid, side-by-side search/date filters
-- **Desktop** (`> 1024px`) — 4-column tutor grid, full navigation bar, profile dropdown
+- **Mobile** (`< 640px`) — Hamburger menu, single-column card grid, stacked
+  filters
+- **Tablet** (`640px – 1024px`) — 3-column tutor grid, side-by-side search/date
+  filters
+- **Desktop** (`> 1024px`) — 4-column tutor grid, full navigation bar, profile
+  dropdown
 
 Key responsive techniques used:
+
 - Tailwind responsive prefixes (`sm:`, `md:`, `lg:`)
 - CSS Grid with `grid-cols-1 sm:grid-cols-3 lg:grid-cols-4`
 - `container mx-auto` for consistent max-width layout
@@ -119,7 +133,8 @@ Key responsive techniques used:
 
 ### 🔍 Search & Filter System
 
-The search and filter system uses **URL query parameters** for shareable, bookmarkable state:
+The search and filter system uses **URL query parameters** for shareable,
+bookmarkable state:
 
 ```
 /tutors?search=john           → Search by name
@@ -127,17 +142,21 @@ The search and filter system uses **URL query parameters** for shareable, bookma
 ```
 
 **How it works:**
+
 1. User types in the search box or selects date range
 2. `updateQuery()` function updates `URLSearchParams` and calls `router.push()`
 3. Next.js server component re-fetches data with the new query string
 4. Backend applies `$regex` for search or `$gte/$lte` for date filtering
 5. UI re-renders with filtered results
 
-> **Smart conflict resolution:** When the user enters a search query, date filters are automatically cleared — and vice versa — preventing conflicting filter states.
+> **Smart conflict resolution:** When the user enters a search query, date
+> filters are automatically cleared — and vice versa — preventing conflicting
+> filter states.
 
 ### 📝 Booking UI
 
 The booking flow uses a **HeroUI Modal** component with:
+
 - Auto-populated fields (user name, email from session)
 - Tutor info card showing subject & price
 - Phone number + preferred date inputs
@@ -154,20 +173,21 @@ The booking flow uses a **HeroUI Modal** component with:
 
 ### 🔌 API Structure (REST API)
 
-The backend is a **single-file Express.js 5 server** (`index.js`) with clean RESTful endpoints:
+The backend is a **single-file Express.js 5 server** (`index.js`) with clean
+RESTful endpoints:
 
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `GET` | `/tutors` | ❌ Public | Get all tutors (with optional search & date filters) |
-| `GET` | `/topTutors` | ❌ Public | Get top 6 tutors for homepage |
-| `GET` | `/tutors/:id` | 🔒 Private | Get single tutor details |
-| `POST` | `/tutors` | 🔒 Private | Create a new tutor profile |
-| `PATCH` | `/tutors/:id` | 🔒 Private | Update tutor data |
-| `DELETE` | `/tutors/:id` | 🔒 Private | Delete a tutor |
-| `GET` | `/tutorsList/:id` | 🔒 Private | Get tutors by account ID |
-| `GET` | `/myBooking/:id` | 🔒 Private | Get user's bookings |
-| `POST` | `/myBooking` | 🔒 Private | Create a booking + decrement slot |
-| `PATCH` | `/myBooking/:id` | 🔒 Private | Cancel a booking |
+| Method   | Endpoint          | Auth       | Description                                          |
+| -------- | ----------------- | ---------- | ---------------------------------------------------- |
+| `GET`    | `/tutors`         | ❌ Public  | Get all tutors (with optional search & date filters) |
+| `GET`    | `/topTutors`      | ❌ Public  | Get top 6 tutors for homepage                        |
+| `GET`    | `/tutors/:id`     | 🔒 Private | Get single tutor details                             |
+| `POST`   | `/tutors`         | 🔒 Private | Create a new tutor profile                           |
+| `PATCH`  | `/tutors/:id`     | 🔒 Private | Update tutor data                                    |
+| `DELETE` | `/tutors/:id`     | 🔒 Private | Delete a tutor                                       |
+| `GET`    | `/tutorsList/:id` | 🔒 Private | Get tutors by account ID                             |
+| `GET`    | `/myBooking/:id`  | 🔒 Private | Get user's bookings                                  |
+| `POST`   | `/myBooking`      | 🔒 Private | Create a booking + decrement slot                    |
+| `PATCH`  | `/myBooking/:id`  | 🔒 Private | Cancel a booking                                     |
 
 ### 🗄️ MongoDB CRUD Operations
 
@@ -179,12 +199,12 @@ const tutorsDataCollection = database.collection('tutorsData');
 const myBookingDataCollection = database.collection('my-booking-data');
 ```
 
-| Operation | Method | MongoDB Driver |
-|---|---|---|
-| **Create** | `insertOne()` | Add tutor / Add booking |
-| **Read** | `find()`, `findOne()` | List tutors, single tutor, bookings |
+| Operation  | Method                            | MongoDB Driver                             |
+| ---------- | --------------------------------- | ------------------------------------------ |
+| **Create** | `insertOne()`                     | Add tutor / Add booking                    |
+| **Read**   | `find()`, `findOne()`             | List tutors, single tutor, bookings        |
 | **Update** | `updateOne()` with `$set`, `$inc` | Edit tutor, decrease slots, cancel booking |
-| **Delete** | `deleteOne()` | Remove tutor |
+| **Delete** | `deleteOne()`                     | Remove tutor                               |
 
 ### 🔐 JWT Authentication
 
@@ -193,7 +213,7 @@ Authentication uses a **JWKS-based verification** flow:
 ```javascript
 // Backend verifies tokens using the frontend's JWKS endpoint
 const jwks = createRemoteJWKSet(
-  new URL(`${process.env.CLIENT_URL}/api/auth/jwks`)
+  new URL(`${process.env.CLIENT_URL}/api/auth/jwks`),
 );
 
 const verifyToken = async (req, res, next) => {
@@ -210,7 +230,8 @@ const verifyToken = async (req, res, next) => {
 
 ### 🔒 Private Routes
 
-All data-modifying and user-specific endpoints are protected by the `verifyToken` middleware:
+All data-modifying and user-specific endpoints are protected by the
+`verifyToken` middleware:
 
 ```
 🔒 POST   /tutors          → requires JWT
@@ -234,7 +255,7 @@ const bookingResult = await myBookingDataCollection.insertOne(newBooking);
 // 2. Decrease available slots by 1
 await tutorsDataCollection.updateOne(
   { _id: new ObjectId(tutorId) },
-  { $inc: { slots: -1 } }
+  { $inc: { slots: -1 } },
 );
 ```
 
@@ -242,17 +263,19 @@ This ensures slot counts stay accurate across concurrent bookings.
 
 ### 📅 Date Filtering (startDate / endDate)
 
-The backend supports **string-based date range filtering** using MongoDB comparison operators:
+The backend supports **string-based date range filtering** using MongoDB
+comparison operators:
 
 ```javascript
 if (startDate || endDate) {
   query.sessionStartDate = {};
-  if (startDate) query.sessionStartDate.$gte = startDate;   // ≥ start
-  if (endDate)   query.sessionStartDate.$lte = endDate;     // ≤ end
+  if (startDate) query.sessionStartDate.$gte = startDate; // ≥ start
+  if (endDate) query.sessionStartDate.$lte = endDate; // ≤ end
 }
 ```
 
-Dates are stored and compared as ISO strings (`YYYY-MM-DD`), which naturally sort correctly without conversion.
+Dates are stored and compared as ISO strings (`YYYY-MM-DD`), which naturally
+sort correctly without conversion.
 
 ---
 
@@ -260,21 +283,29 @@ Dates are stored and compared as ISO strings (`YYYY-MM-DD`), which naturally sor
 
 ### 1. 🐛 Data Not Updating After Filtering
 
-**Problem:** After applying search or date filters, previously displayed tutor cards were stale — the UI wasn't reflecting the new filtered results.
+**Problem:** After applying search or date filters, previously displayed tutor
+cards were stale — the UI wasn't reflecting the new filtered results.
 
-**Root Cause:** Client-side state was managing filter values but the data fetch was happening on the server component.
+**Root Cause:** Client-side state was managing filter values but the data fetch
+was happening on the server component.
 
-**Solution:** Migrated filter state to **URL query parameters** using `useSearchParams()` and `router.push()`. Since the tutors page is a server component, changing the URL triggers a full server-side re-fetch with updated query parameters.
+**Solution:** Migrated filter state to **URL query parameters** using
+`useSearchParams()` and `router.push()`. Since the tutors page is a server
+component, changing the URL triggers a full server-side re-fetch with updated
+query parameters.
 
 ---
 
 ### 2. 🔴 500 Server Error on Booking
 
-**Problem:** Booking requests intermittently returned `500 Internal Server Error`.
+**Problem:** Booking requests intermittently returned
+`500 Internal Server Error`.
 
-**Root Cause:** Some booking requests were missing the `tutorId` field, causing `new ObjectId(undefined)` to crash the server.
+**Root Cause:** Some booking requests were missing the `tutorId` field, causing
+`new ObjectId(undefined)` to crash the server.
 
-**Solution:** Added a **null check** for `tutorId` before the slot decrement operation:
+**Solution:** Added a **null check** for `tutorId` before the slot decrement
+operation:
 
 ```javascript
 if (!tutorId) {
@@ -291,10 +322,14 @@ if (!tutorId) {
 
 **Problem:** Backend was rejecting valid tokens with `403 Forbidden`.
 
-**Root Cause:** The JWKS endpoint URL was misconfigured, and the `authorization` header parsing had a race condition where `authHeader` was checked after `split()`.
+**Root Cause:** The JWKS endpoint URL was misconfigured, and the `authorization`
+header parsing had a race condition where `authHeader` was checked after
+`split()`.
 
 **Solution:**
-- Configured `CLIENT_URL` environment variable to point to the correct frontend domain
+
+- Configured `CLIENT_URL` environment variable to point to the correct frontend
+  domain
 - Used `jose-cjs` library for proper JWKS-based verification
 - Added proper null checks for the authorization header
 
@@ -302,11 +337,14 @@ if (!tutorId) {
 
 ### 4. ⏳ Loading State & Hydration Mismatch
 
-**Problem:** Theme toggle caused a flash of unstyled content (FOUC) and React hydration warnings.
+**Problem:** Theme toggle caused a flash of unstyled content (FOUC) and React
+hydration warnings.
 
-**Root Cause:** Server-rendered HTML had no theme class, but client applied `dark` class on mount.
+**Root Cause:** Server-rendered HTML had no theme class, but client applied
+`dark` class on mount.
 
 **Solution:**
+
 - Added `suppressHydrationWarning` to `<html>` tag
 - Used `next-themes` with `attribute="class"` strategy
 - Wrapped the entire app in `HeroUiThemeProvider` at the layout level
@@ -523,34 +561,43 @@ backend/
 
 ---
 
-##  Future Improvements
+## Future Improvements
 
-| Improvement | Description |
-|---|---|
-|  **Real-time Chat** | Add Socket.io for student-tutor messaging |
-|  **Payment Integration** | Stripe/SSLCommerz for paid session bookings |
-|  **Review System** | Allow students to rate and review tutors after sessions |
-|  **Email Notifications** | Send booking confirmations via Nodemailer |
-|  **PWA Support** | Make the app installable on mobile devices |
-|  **Testing** | Add unit tests with Jest and integration tests with Cypress |
-|  **Admin Dashboard** | Admin panel for managing all tutors and bookings |
-|  **Advanced Filters** | Filter by subject, price range, rating, and location |
-|  **Analytics** | Track booking trends and popular tutors |
+| Improvement             | Description                                                 |
+| ----------------------- | ----------------------------------------------------------- |
+| **Real-time Chat**      | Add Socket.io for student-tutor messaging                   |
+| **Payment Integration** | Stripe/SSLCommerz for paid session bookings                 |
+| **Review System**       | Allow students to rate and review tutors after sessions     |
+| **Email Notifications** | Send booking confirmations via Nodemailer                   |
+| **PWA Support**         | Make the app installable on mobile devices                  |
+| **Testing**             | Add unit tests with Jest and integration tests with Cypress |
+| **Admin Dashboard**     | Admin panel for managing all tutors and bookings            |
+| **Advanced Filters**    | Filter by subject, price range, rating, and location        |
+| **Analytics**           | Track booking trends and popular tutors                     |
 
 ---
 
 ## 📌 Conclusion
 
-**MediQueue** is a production-grade, full-stack tutor booking platform that demonstrates real-world proficiency in:
+**ZenoTutor** is a production-grade, full-stack tutor booking platform that
+demonstrates real-world proficiency in:
 
-- ✅ **Frontend Architecture** — Next.js 16 App Router with server/client component strategy
-- ✅ **Backend Engineering** — RESTful API design with Express.js 5 and MongoDB CRUD
-- ✅ **Authentication** — Secure JWT-based auth with JWKS verification and Google OAuth
-- ✅ **State Management** — URL-driven filter state with server-side data fetching
-- ✅ **UI/UX Design** — Responsive, dark-mode-ready interface with premium components
-- ✅ **Deployment** — Both frontend and backend deployed on Vercel with serverless functions
+- ✅ **Frontend Architecture** — Next.js 16 App Router with server/client
+  component strategy
+- ✅ **Backend Engineering** — RESTful API design with Express.js 5 and MongoDB
+  CRUD
+- ✅ **Authentication** — Secure JWT-based auth with JWKS verification and
+  Google OAuth
+- ✅ **State Management** — URL-driven filter state with server-side data
+  fetching
+- ✅ **UI/UX Design** — Responsive, dark-mode-ready interface with premium
+  components
+- ✅ **Deployment** — Both frontend and backend deployed on Vercel with
+  serverless functions
 
-This project reflects hands-on experience with the full software development lifecycle — from database schema design and API architecture to component-driven UI development and production deployment.
+This project reflects hands-on experience with the full software development
+lifecycle — from database schema design and API architecture to component-driven
+UI development and production deployment.
 
 ---
 

@@ -24,7 +24,7 @@ export default function LoadingScreen() {
           bg-gradient-to-r from-blue-500 to-cyan-400 
           bg-clip-text text-transparent"
           >
-            MediQueue
+            ZenoTutor
           </h2>
 
           <p className="text-xs tracking-[0.3em] text-gray-500 dark:text-gray-400 animate-pulse">

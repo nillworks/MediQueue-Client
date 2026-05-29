@@ -109,7 +109,7 @@ const SignUpPage = () => {
           <div className="absolute w-72 h-72 bg-pink-400/20 rounded-full blur-3xl bottom-[-50px] right-[-50px]" />
 
           <div className="relative z-10">
-            <h1 className="text-3xl font-bold mb-6">MediQueue</h1>
+            <h1 className="text-3xl font-bold mb-6">ZenoTutor</h1>
 
             <h2 className="text-4xl font-bold mb-4">
               Join the Learning Journey
@@ -289,7 +289,10 @@ const SignUpPage = () => {
 
             <p className="text-center mt-6 text-sm dark:text-gray-300">
               Already have an account?
-              <Link href="/signin" className="text-blue-600 dark:text-blue-400 font-medium ml-1">
+              <Link
+                href="/signin"
+                className="text-blue-600 dark:text-blue-400 font-medium ml-1"
+              >
                 Login
               </Link>
             </p>

@@ -49,7 +49,7 @@ const NotFound = () => {
           </div>
 
           {/* bottom text */}
-          <p className="mt-10 text-sm text-slate-400">MediQueue © 2026</p>
+          <p className="mt-10 text-sm text-slate-400">ZenoTutor © 2026</p>
         </div>
       </div>
     </section>

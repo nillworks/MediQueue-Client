@@ -16,16 +16,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'MediQueue | Book Doctors Easily',
+  title: 'ZenoTutor | Book Doctors Easily',
   description:
-    'Book doctor appointments online with MediQueue. Fast, secure, and easy healthcare access.',
-  keywords: ['doctor booking', 'appointment system', 'healthcare', 'MediQueue'],
+    'Book doctor appointments online with ZenoTutor. Fast, secure, and easy healthcare access.',
+  keywords: ['doctor booking', 'appointment system', 'healthcare', 'ZenoTutor'],
   authors: [{ name: 'Nill Ray' }],
   openGraph: {
-    title: 'MediQueue',
+    title: 'ZenoTutor',
     description: 'Easy doctor booking system',
     url: 'https://yourdomain.com',
-    siteName: 'MediQueue',
+    siteName: 'ZenoTutor',
     type: 'website',
   },
 };

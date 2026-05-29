@@ -69,7 +69,7 @@ const NavigationMenu = () => {
                 </div>
               </div>
               <h2 className="text-[20px] font-bold text-slate-900 dark:text-white transition-colors duration-300">
-                MediQueue
+                ZenoTutor
               </h2>
             </Link>
           </div>

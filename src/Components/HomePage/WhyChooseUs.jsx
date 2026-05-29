@@ -60,7 +60,7 @@ export default function WhyChooseUs() {
             Our Advantages
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#091833] dark:text-white">
-            Why Choose MediQueue
+            Why Choose ZenoTutor
           </h2>
         </div>
 

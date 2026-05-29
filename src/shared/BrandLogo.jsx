@@ -33,7 +33,7 @@ const BrandLogo = ({
           isLight ? 'text-white' : 'text-[#003b33] dark:text-[#e6f6f4]'
         }`}
       >
-        MediQueue
+        ZenoTutor
       </h2>
     </div>
   );

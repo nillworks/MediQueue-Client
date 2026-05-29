@@ -14,7 +14,7 @@ const testimonials = [
     id: 1,
     name: 'Jessica Adams',
     role: 'Medical Student',
-    text: 'MediQueue transformed my MCAT preparation. The verified tutors and flexible scheduling helped me score in the 99th percentile.',
+    text: 'ZenoTutor transformed my MCAT preparation. The verified tutors and flexible scheduling helped me score in the 99th percentile.',
     rating: 5,
     image:
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop',
@@ -66,7 +66,7 @@ const Testimonials = () => {
           </h2>
 
           <p className="max-w-2xl mx-auto mt-5 text-slate-500 dark:text-slate-400 leading-7">
-            Discover how MediQueue helps students achieve academic excellence
+            Discover how ZenoTutor helps students achieve academic excellence
             with trusted tutors and flexible learning.
           </p>
         </div>

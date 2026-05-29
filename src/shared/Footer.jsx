@@ -39,7 +39,7 @@ const Footer = () => {
                 <circle cx="24" cy="14" r="3" fill="#07142F" />
               </svg>
 
-              <h2 className="text-2xl font-bold tracking-tight">MediQueue</h2>
+              <h2 className="text-2xl font-bold tracking-tight">ZenoTutor</h2>
             </div>
 
             <p className="text-gray-400 text-sm leading-7 mb-7 max-w-sm">
@@ -126,7 +126,7 @@ const Footer = () => {
                   <FaEnvelope />
                 </div>
 
-                <span className="break-all">support@mediqueue.com</span>
+                <span className="break-all">support@ZenoTutor.com</span>
               </li>
 
               <li className="flex items-start gap-3">
@@ -151,7 +151,7 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-5">
           <p className="text-sm text-gray-400 text-center md:text-left">
-            © 2026 MediQueue. All rights reserved.
+            © 2026 ZenoTutor. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400">

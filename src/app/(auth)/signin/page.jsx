@@ -69,7 +69,7 @@ const SignInPage = () => {
     setTimeout(() => {
       setLoading(false);
       if (data) {
-        toast.success('Welcome Back MediQueue', {
+        toast.success('Welcome Back ZenoTutor', {
           description: 'You have successfully Login in to your account.',
           variant: 'success',
         });
@@ -109,7 +109,7 @@ const SignInPage = () => {
           <div className="absolute w-72 h-72 bg-purple-400/20 rounded-full blur-3xl bottom-[-50px] right-[-50px]" />
 
           <div className="relative z-10">
-            <h1 className="text-3xl font-bold mb-6 tracking-wide">MediQueue</h1>
+            <h1 className="text-3xl font-bold mb-6 tracking-wide">ZenoTutor</h1>
 
             <h2 className="text-4xl font-bold leading-tight mb-4">
               Welcome Back
@@ -141,7 +141,9 @@ const SignInPage = () => {
         <div className="p-8 flex items-center">
           <div className="w-full max-w-md mx-auto">
             <h2 className="text-2xl font-bold mb-2 dark:text-white">Sign In</h2>
-            <p className="text-gray-500 dark:text-gray-400 mb-6">Enter your email & password</p>
+            <p className="text-gray-500 dark:text-gray-400 mb-6">
+              Enter your email & password
+            </p>
 
             <form onSubmit={handleLogin} className="space-y-4">
               {/* EMAIL */}
@@ -240,7 +242,10 @@ const SignInPage = () => {
 
             <p className="text-center mt-6 text-sm dark:text-gray-300">
               Don’t have an account?{' '}
-              <Link href="/signup" className="text-blue-600 dark:text-blue-400 font-medium">
+              <Link
+                href="/signup"
+                className="text-blue-600 dark:text-blue-400 font-medium"
+              >
                 Register
               </Link>
             </p>
