@@ -9,8 +9,8 @@
 ## 📸 Project Preview
 
 <p align="center">
-  <img src="/preview/zenotutor.png" alt="Home Page" width="45%" />
-  <img src="/preview/zenotutor-2.png" alt="privew" width="45%" />
+  <img src="/preview/zenotutor.png" alt="Home Page" />
+  <img src="/preview/zenotutor-2.png" alt="privew" />
 </p>
 
 # 🏥 ZenoTutor — Tutor Booking Platform
