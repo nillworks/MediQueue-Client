@@ -6,6 +6,13 @@
   <img src="https://img.shields.io/badge/Node.js-20+-339933?style=for-the-badge&logo=node.js&logoColor=white" />
 </p>
 
+## 📸 Project Preview
+
+<p align="center">
+  <img src="/preview/zenotutor.png" alt="Home Page" width="45%" />
+  <img src="/preview/zenotutor-2.png" alt="privew" width="45%" />
+</p>
+
 # 🏥 ZenoTutor — Tutor Booking Platform
 
 > **A full-stack MERN application that connects students with professional
