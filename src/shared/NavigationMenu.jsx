@@ -9,11 +9,24 @@ import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from '@heroui/react';
 import { ThemeSwitch } from '@/Components/Provider/ThemeSwitch';
+import { User } from 'lucide-react';
 
 const NavigationMenu = () => {
   const { data } = useSession();
   const user = data?.user;
   const router = useRouter();
+
+  const isValidUrl = (urlString) => {
+    try {
+      if (!urlString) return false;
+      new URL(urlString);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const hasValidImage = isValidUrl(user?.image);
 
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -100,13 +113,19 @@ const NavigationMenu = () => {
                     onClick={() => setOpen(!open)}
                     className="flex items-center gap-3 rounded-full bg-blue-100 dark:bg-slate-800 px-2 py-1 hover:bg-blue-200 dark:hover:bg-slate-700 transition"
                   >
-                    <Image
-                      width={32}
-                      height={32}
-                      src={user?.image}
-                      alt={user?.name || 'user'}
-                      className="h-8 w-8 rounded-full border-2 border-white dark:border-slate-700 object-cover"
-                    />
+                    {hasValidImage ? (
+                      <Image
+                        width={32}
+                        height={32}
+                        src={user?.image}
+                        alt={user?.name || 'user'}
+                        className="h-8 w-8 rounded-full border-2 border-white dark:border-slate-700 object-cover"
+                      />
+                    ) : (
+                      <div className="h-8 w-8 rounded-full border-2 border-white dark:border-slate-700 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                        <User size={16} className="text-gray-500 dark:text-gray-400" />
+                      </div>
+                    )}
 
                     <span className="font-medium text-slate-700 dark:text-slate-200">
                       {user?.name}
@@ -151,16 +170,14 @@ const NavigationMenu = () => {
                   <div className="flex items-center gap-3">
                     <Link
                       href="/signin"
-                      className="rounded-full bg-blue-200 px-7 py-2.5 font-semibold text-blue-900 shadow-sm
-                    hover:bg-blue-300 hover:shadow-md transition-all duration-200"
+                      className="rounded-full bg-blue-200 px-7 py-2.5 font-semibold text-blue-900 shadow-sm hover:bg-blue-300 hover:shadow-md transition-all duration-200"
                     >
                       Login
                     </Link>
 
                     <Link
                       href="/signup"
-                      className="rounded-full bg-gray-900 px-7 py-2.5 font-semibold text-white shadow-sm
-                    hover:bg-black hover:shadow-md transition-all duration-200"
+                      className="rounded-full bg-gray-900 px-7 py-2.5 font-semibold text-white shadow-sm hover:bg-black hover:shadow-md transition-all duration-200"
                     >
                       Register
                     </Link>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import ActiveLink from './ActiveLink';
 import Image from 'next/image';
 import { signOut } from '@/lib/auth-client';
@@ -12,6 +12,17 @@ import { useRouter } from 'next/navigation';
 const MobileMenu = ({ navLinks, user }) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+
+  const isValidUrl = (urlString) => {
+    try {
+      if (!urlString) return false;
+      new URL(urlString);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+  const hasValidImage = isValidUrl(user?.image);
   const handleSignOut = () => {
     signOut();
     toast.success('Signed out successfully', {
@@ -65,13 +76,19 @@ const MobileMenu = ({ navLinks, user }) => {
         {/* user */}
         {user && (
           <div className="mb-5 flex items-center gap-3 rounded-xl bg-blue-100 dark:bg-slate-800/50 p-3">
-            <Image
-              width={40}
-              height={40}
-              src={user?.image}
-              alt={user?.name}
-              className="h-10 w-10 rounded-full object-cover"
-            />
+            {hasValidImage ? (
+              <Image
+                width={40}
+                height={40}
+                src={user?.image}
+                alt={user?.name || 'user'}
+                className="h-10 w-10 rounded-full object-cover"
+              />
+            ) : (
+              <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                <User size={20} className="text-gray-500 dark:text-gray-400" />
+              </div>
+            )}
             <div>
               <h4 className="font-semibold text-slate-800 dark:text-slate-100">
                 {user?.name}
@@ -104,16 +121,14 @@ const MobileMenu = ({ navLinks, user }) => {
               <div className="flex items-center gap-3">
                 <Link
                   href="/signin"
-                  className="rounded-full bg-blue-200 px-7 py-2.5 font-semibold text-blue-900 shadow-sm
-                    hover:bg-blue-300 hover:shadow-md transition-all duration-200"
+                  className="rounded-full bg-blue-200 px-7 py-2.5 font-semibold text-blue-900 shadow-sm hover:bg-blue-300 hover:shadow-md transition-all duration-200"
                 >
                   Login
                 </Link>
 
                 <Link
                   href="/signup"
-                  className="rounded-full bg-gray-900 px-7 py-2.5 font-semibold text-white shadow-sm
-                    hover:bg-black hover:shadow-md transition-all duration-200"
+                  className="rounded-full bg-gray-900 px-7 py-2.5 font-semibold text-white shadow-sm hover:bg-black hover:shadow-md transition-all duration-200"
                 >
                   Register
                 </Link>

@@ -66,7 +66,7 @@ const AddTutorForm = () => {
     } else {
       toast.danger('Failed to Add Tutor', {
         description:
-          error?.message || 'Something went wrong. Please try again.',
+          res?.message || 'Something went wrong. Please try again.',
         variant: 'danger',
       });
       return;

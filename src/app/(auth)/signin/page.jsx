@@ -6,7 +6,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { authClient } from '@/lib/auth-client';
 import { toast } from '@heroui/react';
-import { Lock, Mail } from 'lucide-react';
+import { Lock, Mail, User, Clock, Star, CalendarCheck } from 'lucide-react';
 
 const SignInPage = () => {
   const [showPass, setShowPass] = useState(false);
@@ -101,7 +101,7 @@ const SignInPage = () => {
 
   return (
     <div className="flex pt-30 pb-10 items-center justify-center px-4 bg-gray-50 dark:bg-[#0B0F19] transition-colors duration-300">
-      <div className="w-full max-w-5xl grid lg:grid-cols-2 bg-white dark:bg-[#0B0F19] rounded-3xl shadow-xl overflow-hidden">
+      <div className="container mx-auto grid lg:grid-cols-2 bg-white dark:bg-[#0B0F19] rounded-3xl shadow-xl overflow-hidden">
         {/*  MODERN LEFT */}
         <div className="hidden lg:flex flex-col justify-between p-10 bg-gradient-to-br from-indigo-700 via-blue-600 to-purple-700 text-white relative overflow-hidden">
           {/* glow effect */}
@@ -118,6 +118,42 @@ const SignInPage = () => {
             <p className="text-blue-100 text-lg">
               Book expert tutors, manage sessions, and grow faster
             </p>
+          </div>
+
+          {/* Floating Cards Section */}
+          <div className="relative flex-1 flex items-center justify-center mt-12 mb-12">
+            {/* Primary Card */}
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl w-4/5 transform -rotate-3 hover:rotate-0 transition-all duration-500 shadow-2xl relative z-20">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                  <User size={24} className="text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">Alex Johnson</h3>
+                  <p className="text-blue-100 text-sm">Mathematics Expert</p>
+                </div>
+              </div>
+              <div className="bg-white/20 rounded-lg p-3 text-sm flex items-center gap-2">
+                <Clock size={16} className="text-yellow-300" />
+                Next session in 15 mins
+              </div>
+            </div>
+            
+            {/* Floating Badge */}
+            <div className="absolute -right-4 top-1/4 bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-3 rounded-2xl transform rotate-6 shadow-xl z-30 animate-[bounce_3s_ease-in-out_infinite]">
+              <div className="flex items-center gap-2">
+                <Star size={18} className="text-yellow-400 fill-yellow-400" />
+                <span className="font-bold">4.9/5 Rating</span>
+              </div>
+            </div>
+
+            {/* Notification Badge */}
+            <div className="absolute -left-6 bottom-4 bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-3 rounded-2xl transform -rotate-6 shadow-xl z-30 animate-[bounce_4s_ease-in-out_infinite]">
+              <div className="flex items-center gap-2">
+                <CalendarCheck size={18} className="text-green-400" />
+                <span className="font-bold text-sm">Confirmed!</span>
+              </div>
+            </div>
           </div>
 
           {/* mini stats */}
@@ -157,7 +193,7 @@ const SignInPage = () => {
                   name="email"
                   type="email"
                   placeholder="Enter your valid email address"
-                  className={`w-full px-4 py-3 rounded-xl border outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
+                  className={`w-full px-4 py-3 rounded-xl border outline-none bg-white text-gray-900 border-gray-200 placeholder:text-gray-400 dark:bg-[#111827] dark:text-white dark:border-white/10 dark:placeholder:text-gray-500
                              ${errors.email ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 
@@ -177,7 +213,7 @@ const SignInPage = () => {
                   name="password"
                   type={showPass ? 'text' : 'password'}
                   placeholder="Enter your password"
-                  className={`w-full px-4 py-3 rounded-xl border pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
+                  className={`w-full px-4 py-3 rounded-xl border pr-10 outline-none bg-white text-gray-900 border-gray-200 placeholder:text-gray-400 dark:bg-[#111827] dark:text-white dark:border-white/10 dark:placeholder:text-gray-500
       ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 

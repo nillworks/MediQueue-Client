@@ -32,6 +32,16 @@ const BookingSession = ({ singleData }) => {
   const isAfterEnd = today > sessionEnd;
   const isDateInvalid = isBeforeStart || isAfterEnd;
 
+  let validImageUrl = 'https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff';
+  if (user?.image) {
+    try {
+      new URL(user.image);
+      validImageUrl = user.image;
+    } catch (e) {
+      // keep fallback
+    }
+  }
+
   const submitBooing = async event => {
     event.preventDefault();
 
@@ -151,10 +161,7 @@ const BookingSession = ({ singleData }) => {
                 <Image
                   width={200}
                   height={200}
-                  src={
-                    user?.image ||
-                    'https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff'
-                  }
+                  src={validImageUrl}
                   className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
                   alt="student"
                 />

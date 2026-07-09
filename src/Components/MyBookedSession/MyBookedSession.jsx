@@ -19,8 +19,8 @@ const MyBookedSession = async () => {
     headers: await headers(),
   });
 
-  const MyBookingData = await getMyBookingData(session?.user.id);
-  const MyBooking = MyBookingData?.myBooking;
+  const MyBookingData = await getMyBookingData(session?.user?.id);
+  const MyBooking = MyBookingData?.myBooking || [];
 
   return (
     <>
@@ -34,17 +34,19 @@ const MyBookedSession = async () => {
         </p>
       </div>
 
-      <Table className={'border border-[#dddd] dark:border-white/10 mx-5 rounded-lg'}>
-        <TableHeader className={'hover:bg-transparent'}>
-          <TableRow className={'hover:bg-transparent'}>
-            <TableHead>Name</TableHead>
-            <TableHead>Phone</TableHead>
-            <TableHead>Tutor Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Cancel</TableHead>
-          </TableRow>
-        </TableHeader>
+      <div className="bg-white dark:bg-[#111827] border border-gray-200 dark:border-white/10 rounded-2xl shadow-sm overflow-hidden mx-3 lg:mx-0">
+        <div className="overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-800">
+          <Table className="w-full min-w-[800px]">
+            <TableHeader className="bg-gray-50/50 dark:bg-white/5">
+              <TableRow className="hover:bg-transparent border-b border-gray-100 dark:border-white/5">
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Name</TableHead>
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Phone</TableHead>
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Tutor Name</TableHead>
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Email</TableHead>
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Status</TableHead>
+                <TableHead className="text-right font-semibold text-gray-600 dark:text-gray-300">Cancel</TableHead>
+              </TableRow>
+            </TableHeader>
 
         <TableBody>
           {MyBooking.length === 0 ? (
@@ -70,7 +72,7 @@ const MyBookedSession = async () => {
             </TableRow>
           ) : (
             MyBooking.map((Booking, index) => (
-              <TableRow key={index} className={'hover:bg-transparent'}>
+              <TableRow key={index} className="group hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-200 border-b border-gray-100 dark:border-white/5">
                 {/* Tutor */}
                 <TableCell className="flex items-center gap-3 font-medium">
                   {/* <Image
@@ -124,6 +126,8 @@ const MyBookedSession = async () => {
           )}
         </TableBody>
       </Table>
+      </div>
+      </div>
     </>
   );
 };

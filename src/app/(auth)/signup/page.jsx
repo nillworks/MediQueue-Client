@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Input, toast } from '@heroui/react';
+import { toast } from '@heroui/react';
 import { authClient, signOut } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
-import { ImageIcon, Lock, Mail, User } from 'lucide-react';
+import { ImageIcon, Lock, Mail, User, Rocket, ShieldCheck, TrendingUp } from 'lucide-react';
 
 const SignUpPage = () => {
   const [showPass, setShowPass] = useState(false);
@@ -29,7 +29,15 @@ const SignUpPage = () => {
     else if (!/\S+@\S+\.\S+/.test(signUpData.email))
       newErrors.email = 'Invalid email';
 
-    if (!signUpData.photo) newErrors.photo = 'Photo URL required';
+    if (!signUpData.photo) {
+      newErrors.photo = 'Photo URL required';
+    } else {
+      try {
+        new URL(signUpData.photo);
+      } catch (e) {
+        newErrors.photo = 'Please enter a valid URL';
+      }
+    }
 
     if (!signUpData.password) newErrors.password = 'Password required';
     else if (signUpData.password.length <= 8)
@@ -57,7 +65,7 @@ const SignUpPage = () => {
       email: signUpData?.email, // required
       password: signUpData?.password, // required
       image: signUpData?.photo,
-      callbackURL: '/',
+      // callbackURL: '/',
     });
 
     setTimeout(() => {
@@ -101,7 +109,7 @@ const SignUpPage = () => {
 
   return (
     <div className="flex pt-35 pb-10 items-center justify-center px-4 bg-gray-50 dark:bg-[#0B0F19] transition-colors duration-300">
-      <div className="w-full max-w-5xl grid lg:grid-cols-2 bg-white dark:bg-[#0B0F19] rounded-3xl shadow-xl overflow-hidden">
+      <div className="container mx-auto grid lg:grid-cols-2 bg-white dark:bg-[#0B0F19] rounded-3xl shadow-xl overflow-hidden">
         {/* LEFT SIDE - MODERN DESIGN */}
         <div className="hidden lg:flex flex-col justify-between p-10 bg-gradient-to-br from-purple-700 via-indigo-600 to-blue-600 text-white relative overflow-hidden">
           {/* glow circles */}
@@ -118,6 +126,39 @@ const SignUpPage = () => {
             <p className="text-blue-100 text-lg">
               Find expert tutors, book sessions instantly and grow your skills.
             </p>
+          </div>
+
+          {/* Floating Features Section */}
+          <div className="relative flex-1 flex flex-col justify-center gap-6 mt-10 mb-10 w-full px-4">
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-5 rounded-2xl flex items-center gap-4 transform transition-all duration-300 hover:scale-105 shadow-xl w-11/12 relative z-20">
+              <div className="bg-blue-500/40 p-3 rounded-xl">
+                <Rocket size={24} className="text-white" />
+              </div>
+              <div>
+                <h4 className="font-bold text-lg">Fast Booking</h4>
+                <p className="text-sm text-blue-100">Find & book expert tutors instantly</p>
+              </div>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-5 rounded-2xl flex items-center gap-4 transform translate-x-8 transition-all duration-300 hover:scale-105 shadow-xl w-11/12 relative z-20">
+              <div className="bg-purple-500/40 p-3 rounded-xl">
+                <ShieldCheck size={24} className="text-white" />
+              </div>
+              <div>
+                <h4 className="font-bold text-lg">Verified Tutors</h4>
+                <p className="text-sm text-blue-100">Quality education you can trust</p>
+              </div>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-5 rounded-2xl flex items-center gap-4 transform transition-all duration-300 hover:scale-105 shadow-xl w-11/12 relative z-20">
+              <div className="bg-indigo-500/40 p-3 rounded-xl">
+                <TrendingUp size={24} className="text-white" />
+              </div>
+              <div>
+                <h4 className="font-bold text-lg">Track Progress</h4>
+                <p className="text-sm text-blue-100">Manage sessions and grow faster</p>
+              </div>
+            </div>
           </div>
 
           {/* stats */}
@@ -156,11 +197,11 @@ const SignUpPage = () => {
                   <User size={16} />
                   Full Name
                 </label>
-                <Input
+                <input
                   name="name"
                   placeholder="Your Full Name"
-                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
-                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none bg-white text-gray-900 border-gray-200 placeholder:text-gray-400 dark:bg-[#111827] dark:text-white dark:border-white/10 dark:placeholder:text-gray-500
+                             ${errors.name ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.name && (
                   <p className="text-red-500 text-sm">{errors.name}</p>
@@ -173,12 +214,12 @@ const SignUpPage = () => {
                   <Mail size={16} />
                   Email Address
                 </label>
-                <Input
+                <input
                   name="email"
                   type="email"
                   placeholder="Enter your valid email address"
-                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
-                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none bg-white text-gray-900 border-gray-200 placeholder:text-gray-400 dark:bg-[#111827] dark:text-white dark:border-white/10 dark:placeholder:text-gray-500
+                             ${errors.email ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm">{errors.email}</p>
@@ -191,12 +232,12 @@ const SignUpPage = () => {
                   <ImageIcon size={16} />
                   Photo URL
                 </label>
-                <Input
+                <input
                   name="photo"
                   pattern="https?://.*"
                   placeholder="Valid Photo URL"
-                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
-                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none bg-white text-gray-900 border-gray-200 placeholder:text-gray-400 dark:bg-[#111827] dark:text-white dark:border-white/10 dark:placeholder:text-gray-500
+                             ${errors.photo ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
                 {errors.photo && (
                   <p className="text-red-500 text-sm">{errors.photo}</p>
@@ -210,11 +251,11 @@ const SignUpPage = () => {
                   Password
                 </label>
 
-                <Input
+                <input
                   name="password"
                   type={showPass ? 'text' : 'password'}
                   placeholder="Password"
-                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none bg-white text-gray-900 border-gray-200 placeholder:text-gray-400 dark:bg-[#111827] dark:text-white dark:border-white/10 dark:placeholder:text-gray-500
                              ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 
@@ -242,12 +283,12 @@ const SignUpPage = () => {
                   Confirm Password
                 </label>
 
-                <Input
+                <input
                   name="confirmPassword"
                   type={showConfirm ? 'text' : 'password'}
                   placeholder="Confirm Password"
-                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none dark:bg-[#111827] dark:text-white dark:border-white/10
-                             ${errors.password ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
+                  className={`w-full px-4 py-3 border rounded-xl pr-10 outline-none bg-white text-gray-900 border-gray-200 placeholder:text-gray-400 dark:bg-[#111827] dark:text-white dark:border-white/10 dark:placeholder:text-gray-500
+                             ${errors.confirmPassword ? 'border-red-500' : 'focus:ring-2 focus:ring-blue-500'}`}
                 />
 
                 <button
@@ -272,9 +313,13 @@ const SignUpPage = () => {
               {/* BUTTON */}
               <button
                 disabled={loading}
-                className="w-full py-3 rounded-xl bg-blue-600 cursor-pointer duration-300 text-white font-semibold hover:bg-blue-700 transition"
+                className="w-full py-3 rounded-xl flex items-center justify-center bg-blue-600 cursor-pointer duration-300 text-white font-semibold hover:bg-blue-700 transition"
               >
-                {loading ? 'Loading...' : 'Register'}
+                {loading ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  'Register'
+                )}
               </button>
             </form>
 

@@ -22,7 +22,7 @@ export async function MyTutorsPage() {
   });
 
   const data = await getTutorListData(session?.user?.id);
-  const tutors = data?.tutorsList;
+  const tutors = data?.tutorsList || [];
 
   return (
     <div className="pt-30 container mx-auto px-4 pb-10">
@@ -35,17 +35,19 @@ export async function MyTutorsPage() {
           Manage your registered tutors
         </p>
       </div>
-      <Table className={'border border-[#dddd] dark:border-white/10 rounded-lg'}>
-        <TableHeader className={'hover:bg-transparent'}>
-          <TableRow className={'hover:bg-transparent'}>
-            <TableHead>Tutor Name</TableHead>
-            <TableHead>Subject</TableHead>
-            <TableHead>Fee</TableHead>
-            <TableHead>Slots</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
+      <div className="bg-white dark:bg-[#111827] border border-gray-200 dark:border-white/10 rounded-2xl shadow-sm overflow-hidden">
+        <div className="overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-800">
+          <Table className="w-full min-w-[800px]">
+            <TableHeader className="bg-gray-50/50 dark:bg-white/5">
+              <TableRow className="hover:bg-transparent border-b border-gray-100 dark:border-white/5">
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Tutor Name</TableHead>
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Subject</TableHead>
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Fee</TableHead>
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Slots</TableHead>
+                <TableHead className="font-semibold text-gray-600 dark:text-gray-300">Status</TableHead>
+                <TableHead className="text-right font-semibold text-gray-600 dark:text-gray-300">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
 
         <TableBody>
           {tutors.length === 0 ? (
@@ -71,7 +73,7 @@ export async function MyTutorsPage() {
             </TableRow>
           ) : (
             tutors.map((tutor, index) => (
-              <TableRow key={index} className={'hover:bg-transparent'}>
+              <TableRow key={index} className="group hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-200 border-b border-gray-100 dark:border-white/5">
                 {/* Tutor */}
                 <TableCell className="flex items-center gap-3 font-medium">
                   {/* <Image
@@ -131,6 +133,8 @@ export async function MyTutorsPage() {
           )}
         </TableBody>
       </Table>
+      </div>
+      </div>
     </div>
   );
 }
